@@ -1,10 +1,11 @@
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --gold: #d49b28;
-    --black: #090909;
-    --white: #ffffff;
+    --gold: #cc9226;
+    --black: #050505;
+    --cream: #f5f1e8;
+    --muted: #777;
 }
 
 * {
@@ -17,147 +18,392 @@ html {
 
 body {
     margin: 0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Outfit', Arial, sans-serif;
+    color: #181818;
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 .container {
-    width: 90%;
-    max-width: 1160px;
+    width: min(1200px, calc(100% - 80px));
     margin: auto;
 }
 
-/* Main Navbar */
+/* Header */
 
 .main-header {
-    background: var(--black);
-    color: var(--white);
-    padding: 25px 5%;
+    height: 84px;
+    background: var(--cream);
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    border-bottom: 1px solid #e8dfd1;
 }
 
 .brand {
-    font-size: 24px;
-    font-weight: 700;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    flex-shrink: 0;
+}
+
+.brand-name,
+.brand-name2 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.brand-name {
+    color: #222;
+}
+
+.brand-name2 {
+    color: #f5f1e8;
+}
+
+.brand-name span,
+.brand-name2 span {
     color: var(--gold);
 }
 
-.main-header nav {
+.brand-tagline {
     display: flex;
-    gap: 35px;
+    align-items: center;
+    gap: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    white-space: nowrap;
+    color: #555;
 }
 
-.main-header nav a {
-    font-size: 14px;
+.brand-tagline::before,
+.brand-tagline::after {
+    content: "";
+    width: 14px;
+    height: 1px;
+    background: currentColor;
+}
+
+.main-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+
+.main-links a {
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.main-links a:hover {
+    color: var(--gold);
 }
 
 /* Hero Section */
 
 .career-hero {
-    min-height: 600px;
-    background: var(--black);
-    color: var(--white);
+    min-height: 690px;
+    background: #050505 url('bg.svg') center / cover no-repeat;
+    color: #eee;
     display: flex;
     align-items: center;
 }
 
 .career-hero h1 {
-    font-size: clamp(40px, 6vw, 80px);
-    font-weight: 600;
-    margin-bottom: 20px;
+    margin: 0 0 45px;
+    font-size: clamp(52px, 6.8vw, 104px);
+    font-weight: 300;
+    line-height: 1.11;
+    letter-spacing: -3.5px;
+}
+
+.career-hero h1 strong {
+    font-weight: 700;
 }
 
 .career-hero p {
-    font-size: 18px;
-    color: #aaa;
+    max-width: 660px;
+    margin: 0 0 55px;
+    color: #999;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.65;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    background: var(--gold);
+    color: white;
+    padding: 10px 12px 10px 35px;
+    border-radius: 40px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.hero-btn span {
+    width: 47px;
+    height: 47px;
+    display: grid;
+    place-items: center;
+    background: var(--black);
+    border-radius: 50%;
+    font-size: 23px;
 }
 
 /* Career Navigation */
 
 .career-nav {
-    background: var(--white);
-    padding: 25px 5%;
-    display: flex;
-    justify-content: center;
-    gap: 45px;
-    border-bottom: 1px solid #eee;
+    background: #fff;
+    border-bottom: 1px solid #e9e9e9;
     position: sticky;
     top: 0;
     z-index: 10;
 }
 
-.career-nav a {
-    font-size: 14px;
-    color: #666;
-    white-space: nowrap;
+.nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    min-height: 72px;
 }
 
-.career-nav a:hover {
+.career-nav a {
+    color: #777;
+    font-size: 15px;
+    padding: 24px 0;
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+
+.career-nav a:hover,
+.career-nav a.active {
     color: var(--gold);
 }
 
 /* Why Deepshi Section */
 
 .page-section {
-    padding: 100px 0;
-    scroll-margin-top: 70px;
+    padding: 115px 0 125px;
+    scroll-margin-top: 72px;
+}
+
+.section-label {
+    margin: 0 0 16px;
+    color: #aa791d;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
 .page-section h2 {
-    font-size: 42px;
-    margin-bottom: 20px;
+    margin: 0 0 24px;
+    font-size: clamp(42px, 5vw, 70px);
+    line-height: 1.1;
+    letter-spacing: -2px;
 }
 
-.page-section p {
-    color: #777;
+.page-section h2 span {
+    font-weight: 300;
+}
+
+.section-intro {
+    max-width: 770px;
+    margin: 0 0 55px;
+    color: #737373;
+    font-size: 20px;
     line-height: 1.7;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    padding: 30px 0 90px;
+    border-top: 1px solid #e3e3e3;
+}
+
+.about-layout h3 {
+    margin: 8px 0 17px;
+    font-size: 25px;
+}
+
+.about-layout p,
+.values-grid p {
+    margin: 0;
+    color: #747474;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Core Values */
+
+.values-heading {
+    margin-bottom: 28px;
+}
+
+.values-heading h3 {
+    margin: 0;
+    font-size: 40px;
+    letter-spacing: -1px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.values-grid article {
+    background: #f7f7f5;
+    border: 1px solid #ecebe8;
+    padding: 34px;
+}
+
+.values-grid article span {
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.values-grid h4 {
+    margin: 22px 0 12px;
+    font-size: 26px;
 }
 
 /* Footer */
 
 .site-footer {
-    background: var(--black);
-    color: var(--white);
-    padding: 50px 5%;
-    display: flex;
-    justify-content: space-between;
+    background: #090909;
+    color: #aaa;
+    padding: 42px 0;
 }
 
-/* Responsive */
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
 
-@media (max-width: 768px) {
-    .main-header {
-        flex-direction: column;
-        gap: 20px;
+.site-footer .brand-tagline {
+    color: #bbb;
+}
+
+.footer-inner > a:last-child {
+    color: var(--gold);
+    font-size: 13px;
+}
+
+/* Tablet */
+
+@media (max-width: 850px) {
+    .container {
+        width: calc(100% - 44px);
     }
 
-    .main-header nav {
-        flex-wrap: wrap;
-        justify-content: center;
+    .main-header {
+        padding: 0 22px;
+    }
+
+    .main-links {
         gap: 15px;
     }
 
     .career-hero {
-        min-height: 450px;
+        min-height: 560px;
     }
 
-    .career-nav {
+    .nav-inner {
+        gap: 28px;
         overflow-x: auto;
-        justify-content: flex-start;
-        gap: 25px;
+    }
+
+    .about-layout,
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-layout {
+        gap: 20px;
+        padding-bottom: 55px;
     }
 
     .page-section {
-        padding: 60px 0;
+        padding: 75px 0;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+    .main-header {
+        height: auto;
+        min-height: 84px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        padding: 16px;
     }
 
-    .page-section h2 {
+    .brand-name,
+    .brand-name2 {
+        font-size: 23px;
+    }
+
+    .brand-tagline {
+        font-size: 6px;
+        letter-spacing: 0.8px;
+    }
+
+    .main-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .main-links a {
+        font-size: 10px;
+    }
+
+    .career-hero {
+        min-height: 530px;
+    }
+
+    .career-hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .career-hero p {
+        font-size: 16px;
+    }
+
+    .hero-btn {
+        padding-left: 22px;
+    }
+
+    .values-heading h3 {
         font-size: 32px;
+    }
+
+    .footer-inner {
+        flex-wrap: wrap;
     }
 }
