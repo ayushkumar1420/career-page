@@ -139,40 +139,41 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    gap: 22px;
-    min-width: 284px;
-    min-height: 88px;
+    gap: 16px;
+    min-width: 250px;
+    min-height: 68px;
     margin-top: 20px;
-    padding: 12px 18px 12px 32px;
+    padding: 10px 14px 10px 24px;
     border-radius: 999px;
-    background: #cc9226;
-    color: #fff;
+    background: #d9d9d9;
+    color: #777;
     font-weight: 600;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: background 0.4s cubic-bezier(0, 0, 0.3642, 1), transform 0.4s cubic-bezier(0, 0, 0.3642, 1), filter 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
 
 .life-button span {
     display: grid;
-    width: 50px;
-    height: 50px;
-    flex: 0 0 50px;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
     place-items: center;
     border-radius: 50%;
-    background: #050505;
-    color: #cc9226;
-    font-size: 24px;
+    background: #cc9226;
+    color: #050505;
+    font-size: 20px;
     line-height: 1;
+    transition: transform 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
 
 .life-button:hover {
-    transform: translateY(-2px);
-    background: #b77b12;
+    transform: scale(1.015);
+    filter: brightness(110%);
 }
 
 .life-button:hover span {
-    color: #fff;
+    transform: scale(1.15);
 }
 
 .career-nav .active {
@@ -199,7 +200,6 @@ body {
 
     .life-hero .mil-position-1 {
         right: -80px;
-        opacity: 0.12;
     }
 }
 
@@ -245,7 +245,7 @@ body {
     }
 
     .life-button {
-        min-width: 260px;
-        min-height: 76px;
+        min-width: 230px;
+        min-height: 62px;
     }
 }

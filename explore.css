@@ -16,10 +16,6 @@ body {
     left: auto;
 }
 
-.explore-hero .mil-animation.mil-position-1 {
-    opacity: 0.12;
-}
-
 .explore-hero .mil-position-1 .mil-dodecahedron {
     top: 0;
     left: 0;
@@ -110,22 +106,52 @@ body {
 }
 
 .opportunity-card {
+    position: relative;
     display: flex;
     min-height: 280px;
     flex-direction: column;
     padding: 30px;
     border: 1px solid #ecebe8;
     background: #f7f7f5;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
-.opportunity-card:hover {
+.opportunity-card::before {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: calc(100% + 2px);
+    height: 5px;
+    background: #cc9226;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0, 0, 0.3642, 1);
+}
+
+.opportunity-card:hover,
+.opportunity-card:focus-within {
     transform: translateY(-5px);
-    border-color: #cc9226;
+}
+
+.opportunity-card:hover::before,
+.opportunity-card:focus-within::before {
+    transform: scaleX(1);
 }
 
 .opportunity-number {
-    color: #cc9226;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid #cc9226;
+    border-radius: 50%;
+    background: #cc9226;
+    color: #050505;
+    line-height: 1;
+}
+
+.opportunity-number {
     font-size: 14px;
     font-weight: 600;
 }
@@ -145,28 +171,17 @@ body {
     line-height: 1.7;
 }
 
-.opportunity-card a,
-.explore-text-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
+.opportunity-status {
     margin-top: auto;
-    color: #181818;
+    align-self: flex-start;
+    padding: 7px 12px;
+    border: 1px solid rgba(204, 146, 38, 0.4);
+    border-radius: 999px;
+    color: #8c6116;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1.2px;
-    transition: color 0.25s ease;
-}
-
-.opportunity-card a span,
-.explore-text-link span {
-    color: #cc9226;
-    font-size: 18px;
-}
-
-.opportunity-card a:hover,
-.explore-text-link:hover {
-    color: #b77b12;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
 }
 
 .opportunities-note {
@@ -178,7 +193,7 @@ body {
 
 .explore-join-section {
     padding: 105px 0;
-    background: #f5f1e8;
+    background-color: rgb(247, 247, 245)
 }
 
 .explore-join-layout {
@@ -226,42 +241,43 @@ body {
 
 .explore-cta .life-button {
     display: inline-flex;
-    min-width: 284px;
-    min-height: 88px;
+    min-width: 250px;
+    min-height: 68px;
     align-items: center;
     justify-content: space-between;
-    gap: 22px;
+    gap: 16px;
     margin-top: 20px;
-    padding: 12px 18px 12px 32px;
+    padding: 10px 14px 10px 24px;
     border-radius: 999px;
-    background: #cc9226;
-    color: #fff;
+    background: #d9d9d9;
+    color: #777;
     font-weight: 600;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: background 0.4s cubic-bezier(0, 0, 0.3642, 1), transform 0.4s cubic-bezier(0, 0, 0.3642, 1), filter 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
 
 .explore-cta .life-button span {
     display: grid;
-    width: 50px;
-    height: 50px;
-    flex: 0 0 50px;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
     place-items: center;
     border-radius: 50%;
-    background: #050505;
-    color: #cc9226;
-    font-size: 24px;
+    background: #cc9226;
+    color: #050505;
+    font-size: 20px;
     line-height: 1;
+    transition: transform 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
 
 .explore-cta .life-button:hover {
-    transform: translateY(-2px);
-    background: #b77b12;
+    transform: scale(1.015);
+    filter: brightness(110%);
 }
 
 .explore-cta .life-button:hover span {
-    color: #fff;
+    transform: scale(1.15);
 }
 
 #site-footer > footer.mil-dark-bg {
@@ -276,10 +292,6 @@ body {
 @media (max-width: 850px) {
     .explore-hero .mil-position-1 {
         right: -90px;
-    }
-
-    .explore-hero .mil-animation.mil-position-1 {
-        opacity: 0.08;
     }
 
     .opportunity-grid {
@@ -310,10 +322,6 @@ body {
     .explore-hero .mil-position-1 {
         top: 110px;
         right: -150px;
-    }
-
-    .explore-hero .mil-animation.mil-position-1 {
-        opacity: 0.05;
     }
 
     .explore-section-label {
@@ -348,7 +356,7 @@ body {
     }
 
     .explore-cta .life-button {
-        min-width: 260px;
-        min-height: 76px;
+        min-width: 230px;
+        min-height: 62px;
     }
 }

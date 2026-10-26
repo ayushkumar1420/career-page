@@ -199,6 +199,7 @@ a {
 
 .mil-animation {
     z-index: 0;
+    opacity: 0.12;
     pointer-events: none;
 }
 
@@ -286,7 +287,18 @@ a {
     .career-hero .mil-position-1 {
         right: -100px;
         top: 70px;
-        opacity: 0.12;
+    }
+}
+
+@media (max-width: 850px) {
+    .career-hero .mil-animation {
+        opacity: 0.08;
+    }
+}
+
+@media (max-width: 560px) {
+    .career-hero .mil-animation {
+        opacity: 0.05;
     }
 }
 
@@ -323,13 +335,14 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 28px;
-    background: var(--gold);
-    color: white;
+    background: #d9d9d9;
+    color: #777;
     padding: 10px 12px 10px 35px;
     border-radius: 40px;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.5px;
+    transition: transform 0.4s cubic-bezier(0, 0, 0.3642, 1), filter 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
 
 .hero-btn span {
@@ -337,9 +350,20 @@ a {
     height: 47px;
     display: grid;
     place-items: center;
-    background: var(--black);
+    background: var(--gold);
+    color: var(--black);
     border-radius: 50%;
     font-size: 23px;
+    transition: transform 0.4s cubic-bezier(0, 0, 0.3642, 1);
+}
+
+.hero-btn:hover {
+    transform: scale(1.015);
+    filter: brightness(110%);
+}
+
+.hero-btn:hover span {
+    transform: scale(1.15);
 }
 
 /* Career Navigation */
