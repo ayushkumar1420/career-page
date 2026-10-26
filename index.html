@@ -15,12 +15,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="main-header"> 
+    <header class="main-header">
         <a href="../index.html" class="brand">
-            <img src="logo2.png" alt="Deepshi Tech — Turning vision into victory">
+            <img src="logo.png" alt="Deepshi Tech — Turning vision into victory">
         </a>
 
-        <nav class="main-links" aria-label="Main navigation">
+        <div class="career-header-controls">
+            <div class="mil-lang-switcher" id="langSwitcher">
+                <button type="button" class="mil-lang-current" id="langCurrentBtn" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span class="mil-lang-flag" id="langCurrentFlag">🇬🇧</span>
+                    <span class="mil-lang-code" id="langCurrentCode">EN</span>
+                </button>
+                <ul class="mil-lang-list" id="langList">
+                    <li><button type="button" data-lang="en"><span class="mil-lang-flag">🇬🇧</span> English</button></li>
+                    <li><button type="button" data-lang="hi"><span class="mil-lang-flag">🇮🇳</span> हिन्दी</button></li>
+                    <li><button type="button" data-lang="es"><span class="mil-lang-flag">🇪🇸</span> Español</button></li>
+                    <li><button type="button" data-lang="fr"><span class="mil-lang-flag">🇫🇷</span> Français</button></li>
+                    <li><button type="button" data-lang="ar"><span class="mil-lang-flag">🇸🇦</span> العربية</button></li>
+                    <li><button type="button" data-lang="zh"><span class="mil-lang-flag">🇨🇳</span> 中文</button></li>
+                </ul>
+            </div>
+            <button class="career-menu-toggle" type="button" aria-label="Open navigation menu"
+                aria-controls="careerMainNav" aria-expanded="false">
+                <span></span>
+            </button>
+        </div>
+
+        <nav class="main-links" id="careerMainNav" aria-label="Main navigation">
             <a href="../index.html">Home</a>
             <a href="../index.html#about">Our Story</a>
             <a href="../portfolio/index.html">Our Projects</a>
@@ -31,7 +53,7 @@
     <main id="top">
         <section class="career-hero">
             <div class="mil-animation-frame" aria-hidden="true">
-    <div class="mil-animation mil-position-1 mil-dark mil-scale" data-value-1="7" data-value-2="1.6">
+    <div class="mil-animation mil-position-1 mil-dark mil-scale" data-value-1="2.6" data-value-2="1.6">
         <div class="mil-dodecahedron">
             <div class="mil-pentagon">
                 <div></div><div></div><div></div><div></div><div></div>
@@ -441,7 +463,9 @@
                 }, {
                     scale: Number(shape.getAttribute("data-value-2")),
                     scrollTrigger: {
-                        trigger: shape,
+                        trigger: hero,
+                        start: "top top",
+                        end: "bottom top",
                         scrub: true,
                         toggleActions: "play none none reverse"
                     }
@@ -449,5 +473,7 @@
             });
         });
     </script>
+    <script src="../js/i18n.js"></script>
+    <script src="header.js"></script>
 </body>
 </html>

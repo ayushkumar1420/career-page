@@ -38,36 +38,126 @@ a {
 .main-header {
     position: relative;
     z-index: 2;
-    height: 84px;
+    height: 150px;
     background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 5%;
+    padding: 0;
     border-bottom: 0;
+    margin: 0;
 }
 
 .brand {
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-    padding: 7px 10px;
+    position: absolute;
+    top: 52px;
+    left: 4%;
+    display: block;
 }
 
 .brand img {
     display: block;
-    width: min(250px, 42vw);
+    width: 82px;
     height: auto;
-    transform: translateY(6px);
+}
+
+.career-header-controls {
+    position: absolute;
+    top: 22px;
+    right: 4.2%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.main-header .mil-lang-switcher {
+    position: absolute;
+    top: 0;
+    right: 48px;
+    z-index: auto;
+}
+
+.main-header .mil-lang-current {
+    gap: 6px;
+    padding: 8px 12px;
+}
+
+.main-header .mil-lang-current::before {
+    content: "GB";
+}
+
+.main-header .mil-lang-current .mil-lang-flag {
+    display: none;
+}
+
+.career-menu-toggle {
+    display: block;
+    width: 32px;
+    height: 28px;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.career-menu-toggle span,
+.career-menu-toggle span::before,
+.career-menu-toggle span::after {
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #888;
+    content: "";
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.career-menu-toggle span {
+    position: relative;
+    margin: 0 auto;
+}
+
+.career-menu-toggle span::before {
+    transform: translateY(-7px);
+}
+
+.career-menu-toggle span::after {
+    transform: translateY(7px);
+}
+
+.career-menu-toggle[aria-expanded="true"] span {
+    background: transparent;
+}
+
+.career-menu-toggle[aria-expanded="true"] span::before {
+    transform: rotate(45deg);
+}
+
+.career-menu-toggle[aria-expanded="true"] span::after {
+    transform: rotate(-45deg);
 }
 
 .main-links {
+    position: absolute;
+    top: 118px;
+    right: 4.2%;
+    z-index: 4;
+    display: none;
+    min-width: 210px;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    background: rgba(12, 12, 12, 0.96);
+}
+
+.main-links.is-open {
     display: flex;
-    align-items: center;
-    gap: 36px;
 }
 
 .main-links a {
+    display: block;
+    padding: 12px 4px;
     color: var(--cream);
     font-size: 13px;
     font-weight: 500;
@@ -88,7 +178,7 @@ a {
     isolation: auto;
     background: transparent;
     min-height: 100vh;
-    margin-top: calc(-1 * var(--career-header-height, 84px));
+    margin-top: calc(-1 * var(--career-header-height, 150px));
 }
 
 .mil-animation-frame {
@@ -381,14 +471,6 @@ a {
         width: calc(100% - 44px);
     }
 
-    .main-header {
-        padding: 0 22px;
-    }
-
-    .main-links {
-        gap: 15px;
-    }
-
     .career-hero {
         min-height: 560px;
     }
@@ -417,27 +499,20 @@ a {
 
 @media (max-width: 560px) {
     .main-header {
-        height: auto;
-        min-height: 84px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 15px;
-        padding: 16px;
+        height: 150px;
     }
 
-    .brand img {
-        width: min(210px, 52vw);
+    .brand {
+        top: 52px;
+        left: 16px;
+    }
+
+    .career-header-controls {
+        right: 16px;
     }
 
     .main-links {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .main-links a {
-        font-size: 10px;
+        right: 16px;
     }
 
     .career-hero {
