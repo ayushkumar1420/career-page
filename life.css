@@ -75,38 +75,65 @@ body {
 .life-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .life-card {
+    position: relative;
+    display: flex;
+    min-height: 310px;
+    flex-direction: column;
     padding: 34px;
-    background: #f7f7f5;
-    border: 1px solid #ecebe8;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    background: #050505;
 }
 
-.life-card:hover {
-    transform: translateY(-5px);
-    border-color: #cc9226;
+.life-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #cc9226;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0, 0, 0.3642, 1);
+}
+
+.life-card:hover::before,
+.life-card:focus-within::before {
+    transform: scaleX(1);
 }
 
 .life-number {
-    color: #cc9226;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 50%;
+    background: #cc9226;
+    color: #050505;
     font-size: 14px;
     font-weight: 600;
 }
 
 .life-card h3 {
-    margin: 22px 0 12px;
+    margin: 28px 0 12px;
+    color: #eee;
     font-size: 26px;
     font-weight: 500;
 }
 
 .life-card p {
-    margin: 0;
-    color: #747474;
+    margin: 0 0 24px;
+    color: #686868;
     font-size: 16px;
     line-height: 1.8;
+}
+
+.life-card-arrow {
+    margin-top: auto;
 }
 
 .life-cta {

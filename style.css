@@ -335,8 +335,8 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 28px;
-    background: #d9d9d9;
-    color: #777;
+    background: var(--gold);
+    color: #fff;
     padding: 10px 12px 10px 35px;
     border-radius: 40px;
     font-size: 12px;
@@ -350,8 +350,8 @@ a {
     height: 47px;
     display: grid;
     place-items: center;
-    background: var(--gold);
-    color: var(--black);
+    background: var(--black);
+    color: var(--gold);
     border-radius: 50%;
     font-size: 23px;
     transition: transform 0.4s cubic-bezier(0, 0, 0.3642, 1);
@@ -364,6 +364,86 @@ a {
 
 .hero-btn:hover span {
     transform: scale(1.15);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 42px;
+}
+
+.hero-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    transition: color 0.4s cubic-bezier(0, 0, 0.3642, 1);
+}
+
+.hero-secondary-btn span {
+    display: grid;
+    width: 50px;
+    height: 50px;
+    place-items: center;
+    border-radius: 50%;
+    background: #1b1b1b;
+    color: #fff;
+    font-size: 23px;
+    transition: transform 0.4s cubic-bezier(0, 0, 0.3642, 1), background-color 0.4s cubic-bezier(0, 0, 0.3642, 1);
+}
+
+.hero-secondary-btn:hover {
+    color: #fff;
+}
+
+.hero-secondary-btn:hover span {
+    transform: scale(1.15);
+    background: #252525;
+}
+
+.life-card-arrow,
+.opportunity-arrow {
+    position: relative;
+    display: grid;
+    width: 50px;
+    height: 50px;
+    flex: 0 0 50px;
+    place-items: center;
+    color: #aaa;
+    font-size: 20px;
+    line-height: 1;
+    isolation: isolate;
+}
+
+.life-card-arrow::before,
+.opportunity-arrow::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: 50%;
+    background: #252525;
+    content: "";
+    transform: scale(0.32);
+    transition: transform 0.35s ease, background-color 0.35s ease;
+}
+
+.life-card:hover .life-card-arrow,
+.life-card:focus-within .life-card-arrow,
+.opportunity-card:hover .opportunity-arrow,
+.opportunity-card:focus-within .opportunity-arrow {
+    color: #050505;
+}
+
+.life-card:hover .life-card-arrow::before,
+.life-card:focus-within .life-card-arrow::before,
+.opportunity-card:hover .opportunity-arrow::before,
+.opportunity-card:focus-within .opportunity-arrow::before {
+    background: #cc9226;
+    transform: scale(1);
 }
 
 /* Career Navigation */
@@ -554,6 +634,10 @@ a {
 
     .hero-btn {
         padding-left: 22px;
+    }
+
+    .hero-actions {
+        gap: 24px;
     }
 
     .values-heading h3 {
