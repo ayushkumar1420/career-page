@@ -32,11 +32,11 @@ body {
 
 .explore-section-label {
     margin: 0 0 20px;
-    color: #cc9226;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
+    color: var(--gold);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
 }
 
 .explore-hero h1 {
@@ -223,7 +223,7 @@ body {
 
 .explore-cta .explore-section-label {
     margin-bottom: 16px;
-    color: #b77b12;
+    color: var(--gold);
 }
 
 .explore-cta h2 {

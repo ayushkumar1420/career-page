@@ -486,10 +486,11 @@ a {
 
 .section-label {
     margin: 0 0 16px;
-    color: #aa791d;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    color: var(--gold);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
 }
 
 .page-section h2 {

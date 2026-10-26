@@ -24,10 +24,11 @@ body {
 
 .life-hero .life-label {
     margin: 0 0 24px;
-    color: #cc9226;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 3px;
+    color: var(--gold);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
 }
 
 .life-hero h1 {
@@ -144,10 +145,11 @@ body {
 
 .life-cta .section-label {
     margin: 0 0 16px;
-    color: #b77b12;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
+    color: var(--gold);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
 }
 
 .life-cta h2 {
@@ -231,11 +233,6 @@ body {
 }
 
 @media (max-width: 560px) {
-    .life-hero .life-label {
-        font-size: 11px;
-        letter-spacing: 2px;
-    }
-
     .life-hero h1 {
         font-size: clamp(40px, 12vw, 58px);
         line-height: 1.25;
