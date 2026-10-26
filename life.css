@@ -53,7 +53,7 @@ body {
 
 .life-section {
     padding: 115px 0 125px;
-    background: #fff;
+    background: #050505;
 }
 
 .life-section h2,
@@ -65,10 +65,14 @@ body {
     letter-spacing: -2px;
 }
 
+.life-section h2 {
+    color: #eee;
+}
+
 .life-intro {
     max-width: 770px;
     margin: 0 0 55px;
-    color: #737373;
+    color: #686868;
     font-size: 20px;
     line-height: 1.7;
 }
