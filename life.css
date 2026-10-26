@@ -53,7 +53,7 @@ body {
 
 .life-section {
     padding: 115px 0 125px;
-    background: #050505;
+    background: #fff;
 }
 
 .life-section h2,
@@ -66,13 +66,13 @@ body {
 }
 
 .life-section h2 {
-    color: #eee;
+    color: #181818;
 }
 
 .life-intro {
     max-width: 770px;
     margin: 0 0 55px;
-    color: #686868;
+    color: #737373;
     font-size: 20px;
     line-height: 1.7;
 }
@@ -80,65 +80,39 @@ body {
 .life-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1px;
-    background: rgba(255, 255, 255, 0.12);
+    gap: 18px;
 }
 
 .life-card {
-    position: relative;
-    display: flex;
-    min-height: 310px;
-    flex-direction: column;
     padding: 34px;
-    background: #050505;
+    background: #f7f7f5;
+    border: 1px solid #ecebe8;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.life-card::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: #cc9226;
-    content: "";
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.8s cubic-bezier(0, 0, 0.3642, 1);
-}
-
-.life-card:hover::before,
-.life-card:focus-within::before {
-    transform: scaleX(1);
+.life-card:hover {
+    transform: translateY(-5px);
+    border-color: #cc9226;
 }
 
 .life-number {
-    display: grid;
-    width: 42px;
-    height: 42px;
-    place-items: center;
-    border-radius: 50%;
-    background: #cc9226;
-    color: #050505;
+    color: #cc9226;
     font-size: 14px;
     font-weight: 600;
 }
 
 .life-card h3 {
-    margin: 28px 0 12px;
-    color: #eee;
+    margin: 22px 0 12px;
+    color: #181818;
     font-size: 26px;
     font-weight: 500;
 }
 
 .life-card p {
-    margin: 0 0 24px;
-    color: #686868;
+    margin: 0;
+    color: #747474;
     font-size: 16px;
     line-height: 1.8;
-}
-
-.life-card-arrow {
-    margin-top: auto;
 }
 
 .life-cta {
