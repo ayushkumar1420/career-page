@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
     --gold: #cc9226;
@@ -20,6 +20,7 @@ body {
     margin: 0;
     font-family: 'Outfit', Arial, sans-serif;
     color: #181818;
+    background: var(--black);
 }
 
 a {
@@ -35,64 +36,28 @@ a {
 /* Header */
 
 .main-header {
+    position: relative;
+    z-index: 2;
     height: 84px;
-    background: var(--cream);
+    background: rgba(5, 5, 5, 0.78);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 5%;
-    border-bottom: 1px solid #e8dfd1;
+    border-bottom: 1px solid #242424;
 }
 
 .brand {
     display: inline-flex;
-    flex-direction: column;
     align-items: center;
-    width: fit-content;
     flex-shrink: 0;
+    padding: 7px 10px;
 }
 
-.brand-name,
-.brand-name2 {
-    font-family: 'Cinzel', Georgia, serif;
-    font-size: 30px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    line-height: 1.2;
-    white-space: nowrap;
-}
-
-.brand-name {
-    color: #222;
-}
-
-.brand-name2 {
-    color: #f5f1e8;
-}
-
-.brand-name span,
-.brand-name2 span {
-    color: var(--gold);
-}
-
-.brand-tagline {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-family: Arial, sans-serif;
-    font-size: 8px;
-    font-weight: 600;
-    letter-spacing: 1.2px;
-    white-space: nowrap;
-    color: #555;
-}
-
-.brand-tagline::before,
-.brand-tagline::after {
-    content: "";
-    width: 14px;
-    height: 1px;
-    background: currentColor;
+.brand img {
+    display: block;
+    width: min(250px, 42vw);
+    height: auto;
 }
 
 .main-links {
@@ -102,7 +67,7 @@ a {
 }
 
 .main-links a {
-    color: #333;
+    color: var(--cream);
     font-size: 13px;
     font-weight: 500;
     text-transform: uppercase;
@@ -115,10 +80,117 @@ a {
 }
 
 /* Hero Section */
+.career-hero {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    isolation: auto;
+    background: transparent;
+}
+
+.mil-animation-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.career-hero .mil-animation-frame {
+    top: var(--career-header-overlap, -84px);
+    height: calc(100% - var(--career-header-overlap, -84px));
+}
+
+.mil-animation {
+    z-index: 0;
+    pointer-events: none;
+}
+
+.career-hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.career-hero .hero-content {
+    pointer-events: none;
+}
+
+.career-hero .hero-content h1,
+.career-hero .hero-content p,
+.career-hero .hero-content a {
+    pointer-events: auto;
+}
+
+.career-hero .mil-position-1 {
+    top: 90px;
+    right: 8%;
+    left: auto;
+}
+
+.career-hero .mil-position-1 .mil-dodecahedron {
+    left: 0;
+    top: 0;
+}
+
+.career-hero .mil-position-1 .mil-pentagon div {
+    border-top: 1px solid #d79218;
+}
+
+.newsletter-note {
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+}
+
+.footer-bottom-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(24px, 5vw, 70px);
+}
+
+.footer-bottom-left,
+.footer-office-slider {
+    min-width: 0;
+}
+
+.footer-office-slider {
+    width: calc(100% - 4px);
+    grid-template-columns: 48px minmax(0, 1fr) 48px;
+    gap: 16px;
+    max-width: 100%;
+    margin-left: 0;
+    transform: none;
+}
+
+.footer-office-address {
+    overflow-wrap: anywhere;
+}
+
+@media (min-width: 1025px) {
+    #site-footer .footer-office-slider {
+        grid-template-columns: 48px minmax(0, 1fr) 48px !important;
+        gap: 16px !important;
+    }
+
+    #site-footer .footer-office-slider .footer-office-arrow,
+    #site-footer .footer-office-content {
+        transform: none !important;
+    }
+}
+
+@media (max-width: 680px) {
+    .career-hero .mil-position-1 {
+        right: -100px;
+        top: 70px;
+        opacity: 0.12;
+    }
+}
 
 .career-hero {
     min-height: 690px;
-    background: #050505 url('bg.svg') center / cover no-repeat;
+    background: #050505;
     color: #eee;
     display: flex;
     align-items: center;
@@ -126,14 +198,15 @@ a {
 
 .career-hero h1 {
     margin: 0 0 45px;
-    font-size: clamp(52px, 6.8vw, 104px);
-    font-weight: 300;
-    line-height: 1.11;
-    letter-spacing: -3.5px;
+    color: #eee;
+    font-size: clamp(52px, 6.15vw, 86px);
+    font-weight: 100;
+    line-height: 1.2;
+    letter-spacing: -2px;
 }
 
 .career-hero h1 strong {
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .career-hero p {
@@ -203,6 +276,7 @@ a {
 .page-section {
     padding: 115px 0 125px;
     scroll-margin-top: 72px;
+    background: #fff;
 }
 
 .section-label {
@@ -217,7 +291,8 @@ a {
     margin: 0 0 24px;
     font-size: clamp(42px, 5vw, 70px);
     line-height: 1.1;
-    letter-spacing: -2px;
+    font-size: clamp(40px, 13vw, 50px);
+    letter-spacing: -1.5px;
 }
 
 .page-section h2 span {
@@ -288,30 +363,6 @@ a {
     font-size: 26px;
 }
 
-/* Footer */
-
-.site-footer {
-    background: #090909;
-    color: #aaa;
-    padding: 42px 0;
-}
-
-.footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-}
-
-.site-footer .brand-tagline {
-    color: #bbb;
-}
-
-.footer-inner > a:last-child {
-    color: var(--gold);
-    font-size: 13px;
-}
-
 /* Tablet */
 
 @media (max-width: 850px) {
@@ -358,22 +409,17 @@ a {
         height: auto;
         min-height: 84px;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         gap: 15px;
         padding: 16px;
     }
 
-    .brand-name,
-    .brand-name2 {
-        font-size: 23px;
-    }
-
-    .brand-tagline {
-        font-size: 6px;
-        letter-spacing: 0.8px;
+    .brand img {
+        width: min(210px, 52vw);
     }
 
     .main-links {
+        width: 100%;
         justify-content: center;
         flex-wrap: wrap;
         gap: 15px;
@@ -388,7 +434,8 @@ a {
     }
 
     .career-hero h1 {
-        letter-spacing: -2px;
+        font-size: clamp(40px, 13vw, 50px);
+        letter-spacing: -1.5px;
     }
 
     .career-hero p {
@@ -403,7 +450,49 @@ a {
         font-size: 32px;
     }
 
-    .footer-inner {
-        flex-wrap: wrap;
+    .footer-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 25px 0;
+    }
+
+    .footer-bottom-left {
+        transform: none;
+    }
+
+    .footer-office-slider {
+        grid-template-columns: 38px minmax(0, 1fr) 38px;
+        gap: 8px;
+        min-height: 230px;
+        margin-top: 0;
+    }
+
+    .footer-office-arrow {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 650px) {
+    #site-footer .footer-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 25px 0;
+    }
+
+    #site-footer .footer-bottom-left {
+        transform: none;
+    }
+
+    #site-footer .footer-office-slider {
+        grid-template-columns: 38px minmax(0, 1fr) 38px;
+        gap: 8px;
+        min-height: 230px;
+        margin-top: 0;
+    }
+
+    #site-footer .footer-office-arrow {
+        width: 36px;
+        height: 36px;
     }
 }
