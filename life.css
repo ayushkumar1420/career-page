@@ -84,21 +84,58 @@ body {
 }
 
 .life-card {
+    position: relative;
+    overflow: hidden;
     padding: 34px;
     background: #f7f7f5;
     border: 1px solid #ecebe8;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.life-card:hover {
+.life-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #cc9226;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0, 0, 0.3642, 1);
+}
+
+.life-card:hover,
+.life-card:focus-within {
     transform: translateY(-5px);
+    background: #fcfcfa;
     border-color: #cc9226;
+    box-shadow: 0 12px 28px rgba(5, 5, 5, 0.08);
+}
+
+.life-card:hover::before,
+.life-card:focus-within::before {
+    transform: scaleX(1);
 }
 
 .life-number {
+    display: grid;
+    width: 50px;
+    height: 50px;
+    place-items: center;
+    border-radius: 50%;
+    background: transparent;
     color: #cc9226;
     font-size: 14px;
     font-weight: 600;
+    transition: color 0.3s ease, background-color 0.35s ease, transform 0.35s ease;
+}
+
+.life-card:hover .life-number,
+.life-card:focus-within .life-number {
+    transform: scale(1.15);
+    background: #cc9226;
+    color: #050505;
 }
 
 .life-card h3 {

@@ -553,15 +553,55 @@ a {
 }
 
 .values-grid article {
+    position: relative;
+    overflow: hidden;
     background: #f7f7f5;
     border: 1px solid #ecebe8;
     padding: 34px;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.values-grid article::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gold);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0, 0, 0.3642, 1);
+}
+
+.values-grid article:hover {
+    transform: translateY(-5px);
+    background: #fcfcfa;
+    border-color: var(--gold);
+    box-shadow: 0 12px 28px rgba(5, 5, 5, 0.08);
+}
+
+.values-grid article:hover::before {
+    transform: scaleX(1);
 }
 
 .values-grid article span {
+    display: grid;
+    width: 50px;
+    height: 50px;
+    place-items: center;
+    border-radius: 50%;
+    background: transparent;
     color: var(--gold);
     font-size: 14px;
     font-weight: 600;
+    transition: color 0.3s ease, background-color 0.35s ease, transform 0.35s ease;
+}
+
+.values-grid article:hover span {
+    background: var(--gold);
+    color: var(--black);
+    transform: scale(1.15);
 }
 
 .values-grid h4 {
