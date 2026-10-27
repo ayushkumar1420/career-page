@@ -2,55 +2,6 @@ body {
     background: #050505;
 }
 
-.life-hero .mil-animation-frame {
-    top: 0;
-    height: 100%;
-}
-
-.life-hero .mil-position-1 {
-    top: 100px;
-    right: 8%;
-    left: auto;
-}
-
-.life-hero .mil-position-1 .mil-dodecahedron {
-    top: 0;
-    left: 0;
-}
-
-.life-hero .mil-position-1 .mil-pentagon div {
-    border-top: 1px solid #d79218;
-}
-
-.life-hero .life-label {
-    margin: 0 0 24px;
-    color: var(--gold);
-    font-size: 15px;
-    font-weight: 400;
-    letter-spacing: normal;
-    text-transform: none;
-}
-
-.life-hero h1 {
-    font-size: clamp(64px, 7.2vw, 100px);
-    line-height: 1.3;
-    letter-spacing: -3px;
-}
-
-.life-hero h1 strong {
-    color: #eee;
-    font-weight: 500;
-}
-
-.life-hero .life-description {
-    max-width: 650px;
-    margin-bottom: 35px;
-    color: #999;
-    font-size: 19px;
-    font-weight: 300;
-    line-height: 1.65;
-}
-
 .life-section {
     padding: 115px 0 125px;
     background: #fff;
@@ -69,6 +20,11 @@ body {
     color: #181818;
 }
 
+.life-section .section-label,
+.life-cta .section-label {
+    font-weight: 600;
+}
+
 .life-intro {
     max-width: 770px;
     margin: 0 0 55px;
@@ -80,16 +36,15 @@ body {
 .life-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    gap: 0.5px;
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .life-card {
     position: relative;
     overflow: hidden;
     padding: 34px;
-    background: #f7f7f5;
-    border: 1px solid #ecebe8;
-    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #050505;
 }
 
 .life-card::before {
@@ -107,15 +62,16 @@ body {
 
 .life-card:hover,
 .life-card:focus-within {
-    transform: translateY(-5px);
-    background: #fcfcfa;
-    border-color: #cc9226;
-    box-shadow: 0 12px 28px rgba(5, 5, 5, 0.08);
+    background: #050505;
 }
 
 .life-card:hover::before,
 .life-card:focus-within::before {
     transform: scaleX(1);
+}
+
+.life-card::before {
+    pointer-events: none;
 }
 
 .life-number {
@@ -124,30 +80,28 @@ body {
     height: 50px;
     place-items: center;
     border-radius: 50%;
-    background: transparent;
-    color: #cc9226;
-    font-size: 14px;
-    font-weight: 600;
-    transition: color 0.3s ease, background-color 0.35s ease, transform 0.35s ease;
-}
-
-.life-card:hover .life-number,
-.life-card:focus-within .life-number {
-    transform: scale(1.15);
     background: #cc9226;
     color: #050505;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.life-number:hover {
+    transform: translateY(-3px) scale(1.12);
+    box-shadow: 0 5px 14px rgba(204, 146, 38, 0.24);
 }
 
 .life-card h3 {
     margin: 22px 0 12px;
-    color: #181818;
+    color: #eee;
     font-size: 26px;
     font-weight: 500;
 }
 
 .life-card p {
     margin: 0;
-    color: #747474;
+    color: #999;
     font-size: 16px;
     line-height: 1.8;
 }
@@ -162,7 +116,7 @@ body {
     margin: 0 0 16px;
     color: var(--gold);
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 600;
     letter-spacing: normal;
     text-transform: none;
 }
@@ -242,26 +196,9 @@ body {
         padding: 75px 0;
     }
 
-    .life-hero .mil-position-1 {
-        right: -80px;
-    }
 }
 
 @media (max-width: 560px) {
-    .life-hero h1 {
-        font-size: clamp(40px, 12vw, 58px);
-        line-height: 1.25;
-        letter-spacing: -1.5px;
-    }
-
-    .life-hero h1 br {
-        display: block;
-    }
-
-    .life-hero .life-description {
-        font-size: 16px;
-    }
-
     .life-grid {
         grid-template-columns: 1fr;
     }

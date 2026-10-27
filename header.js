@@ -1,3 +1,22 @@
+document.querySelectorAll('.career-hero .mil-animation-frame').forEach(function (frame) {
+    var firstAnimation = frame.querySelector('.mil-animation');
+    if (!firstAnimation || !firstAnimation.querySelector('.mil-dodecahedron')) {
+        return;
+    }
+
+    [
+        { className: 'mil-position-2', initialScale: '1.3', finalScale: '.8' },
+        { className: 'mil-position-3', initialScale: '.52', finalScale: '.32' }
+    ].forEach(function (position) {
+        var animation = firstAnimation.cloneNode(true);
+        animation.classList.remove('mil-position-1');
+        animation.classList.add(position.className);
+        animation.setAttribute('data-value-1', position.initialScale);
+        animation.setAttribute('data-value-2', position.finalScale);
+        frame.appendChild(animation);
+    });
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     var toggle = document.querySelector('.career-menu-toggle');
     var navigation = document.getElementById('careerMainNav');

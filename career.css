@@ -6,6 +6,7 @@
     --black: #050505;
     --cream: #f5f1e8;
     --muted: #777;
+    --career-hero-copy-width: 440px;
 }
 
 * {
@@ -47,20 +48,20 @@ a {
 
 .brand {
     position: absolute;
-    top: 52px;
-    left: 4%;
+    top: 58px;
+    left: 60px;
     display: block;
 }
 
 .brand img {
     display: block;
-    width: 82px;
+    width: 78px;
     height: auto;
 }
 
 .career-header-controls {
     position: absolute;
-    top: 22px;
+    top: 28px;
     right: 4.2%;
     z-index: 5;
     display: flex;
@@ -90,6 +91,9 @@ a {
 }
 
 .career-menu-toggle {
+    position: absolute;
+    top: 56px;
+    right: 0;
     display: block;
     width: 32px;
     height: 28px;
@@ -174,11 +178,13 @@ a {
 .career-hero {
     position: relative;
     z-index: 1;
-    overflow: visible;
-    isolation: auto;
-    background: transparent;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--black);
     min-height: 100vh;
     margin-top: calc(-1 * var(--career-header-height, 150px));
+    display: flex;
+    align-items: center;
 }
 
 .mil-animation-frame {
@@ -199,38 +205,75 @@ a {
 
 .mil-animation {
     z-index: 0;
-    opacity: 0.12;
+    opacity: 0.16;
     pointer-events: none;
 }
 
 .career-hero .hero-content {
     position: relative;
     z-index: 2;
-}
-
-.career-hero .hero-content {
+    width: min(1200px, calc(100% - 80px));
+    padding: 0 15px;
     pointer-events: none;
 }
 
 .career-hero .hero-content h1,
-.career-hero .hero-content p,
+.career-hero .hero-content > p,
 .career-hero .hero-content a {
     pointer-events: auto;
 }
 
 .career-hero .mil-position-1 {
     top: 100px;
-    right: 8%;
+    right: 100px;
     left: auto;
 }
 
-.career-hero .mil-position-1 .mil-dodecahedron {
-    left: 0;
-    top: 0;
+.career-hero .mil-position-1 .mil-pentagon div {
+    border-top: 0.2px solid #d79218;
 }
 
-.career-hero .mil-position-1 .mil-pentagon div {
-    border-top: 1px solid #d79218;
+.career-hero .mil-position-2,
+.career-hero .mil-position-3 {
+    display: block;
+}
+
+.career-hero .hero-content h1 br {
+    display: block;
+}
+
+.career-hero h1 {
+    max-width: 900px;
+    margin: 0 0 64px;
+    color: #eee;
+    font-size: clamp(54px, 5.45vw, 86px);
+    font-weight: 200;
+    line-height: 1.2;
+    letter-spacing: -2.5px;
+}
+
+.career-hero h1 strong {
+    font-weight: 500;
+}
+
+.career-hero .hero-content > p:not(.life-label) {
+    max-width: var(--career-hero-copy-width);
+    margin: 0 0 55px;
+    color: #777;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+}
+
+.life-hero .life-label {
+    position: absolute;
+    top: -30px;
+    left: 15px;
+    margin: 0;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 .newsletter-note {
@@ -283,71 +326,56 @@ a {
     }
 }
 
-@media (max-width: 680px) {
-    .career-hero .mil-position-1 {
-        right: -100px;
-        top: 70px;
+@media (max-width: 1200px) {
+    .career-hero {
+        --career-header-height: 62px;
     }
-}
 
-@media (max-width: 851px) {
-    .career-hero .mil-animation {
-        opacity: 0.08;
+    .main-header {
+        height: 62px;
     }
-}
 
-@media (max-width: 560px) {
-    .career-hero .mil-animation {
-        opacity: 0.05;
+    .brand {
+        top: 0;
+        left: 28px;
+        display: flex;
+        height: 62px;
+        align-items: center;
     }
-}
 
-.career-hero {
-    background: #050505;
-    color: #eee;
-    display: flex;
-    align-items: center;
-}
+    .brand img {
+        width: 60px;
+    }
 
-.career-hero h1 {
-    margin: 0 0 45px;
-    color: #eee;
-    font-size: clamp(52px, 6.15vw, 86px);
-    font-weight: 100;
-    line-height: 1.2;
-    letter-spacing: -2px;
-}
-
-.career-hero h1 strong {
-    font-weight: 500;
-}
-
-.career-hero p {
-    max-width: 660px;
-    margin: 0 0 55px;
-    color: #999;
-    font-size: 19px;
-    font-weight: 300;
-    line-height: 1.65;
+    .career-menu-toggle {
+        position: relative;
+        top: auto;
+        right: auto;
+    }
 }
 
 .hero-btn {
     display: inline-flex;
     align-items: center;
-    gap: 28px;
+    justify-content: space-between;
+    gap: 20px;
+    min-width: 238px;
+    min-height: 72px;
     background: var(--gold);
     color: #fff;
-    padding: 10px 12px 10px 35px;
-    border-radius: 40px;
+    padding: 10px 12px 10px 32px;
+    border-radius: 999px;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1.5px;
+    white-space: nowrap;
     transition: transform 0.4s cubic-bezier(0, 0, 0.3642, 1), filter 0.4s cubic-bezier(0, 0, 0.3642, 1);
 }
 
 .hero-btn span {
-    width: 47px;
-    height: 47px;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
     display: grid;
     place-items: center;
     background: var(--black);
@@ -370,13 +398,13 @@ a {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 42px;
+    gap: 32px;
 }
 
 .hero-secondary-btn {
     display: inline-flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
     color: rgba(255, 255, 255, 0.86);
     font-size: 12px;
     font-weight: 600;
@@ -386,8 +414,8 @@ a {
 
 .hero-secondary-btn span {
     display: grid;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     place-items: center;
     border-radius: 50%;
     background: #1b1b1b;
@@ -465,7 +493,8 @@ a {
 
 .career-nav a {
     color: #777;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 600;
     padding: 24px 0;
     white-space: nowrap;
     transition: color 0.3s;
@@ -474,6 +503,10 @@ a {
 .career-nav a:hover,
 .career-nav a.active {
     color: var(--gold);
+}
+
+.career-nav a.active {
+    font-weight: 600;
 }
 
 /* Why Deepshi Section */
@@ -488,7 +521,7 @@ a {
     margin: 0 0 16px;
     color: var(--gold);
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 600;
     letter-spacing: normal;
     text-transform: none;
 }
@@ -549,16 +582,15 @@ a {
 .values-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    gap: 0.5px;
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .values-grid article {
     position: relative;
     overflow: hidden;
-    background: #f7f7f5;
-    border: 1px solid #ecebe8;
+    background: var(--black);
     padding: 34px;
-    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .values-grid article::before {
@@ -575,38 +607,47 @@ a {
 }
 
 .values-grid article:hover {
-    transform: translateY(-5px);
-    background: #fcfcfa;
-    border-color: var(--gold);
-    box-shadow: 0 12px 28px rgba(5, 5, 5, 0.08);
+    background: var(--black);
+}
+
+.values-grid article:focus-within {
+    background: var(--black);
+}
+
+.values-grid article::before {
+    pointer-events: none;
 }
 
 .values-grid article:hover::before {
     transform: scaleX(1);
 }
 
-.values-grid article span {
+.values-grid article > span {
     display: grid;
     width: 50px;
     height: 50px;
     place-items: center;
     border-radius: 50%;
-    background: transparent;
-    color: var(--gold);
-    font-size: 14px;
-    font-weight: 600;
-    transition: color 0.3s ease, background-color 0.35s ease, transform 0.35s ease;
-}
-
-.values-grid article:hover span {
     background: var(--gold);
     color: var(--black);
-    transform: scale(1.15);
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.values-grid article > span:hover {
+    transform: translateY(-3px) scale(1.12);
+    box-shadow: 0 5px 14px rgba(204, 146, 38, 0.24);
 }
 
 .values-grid h4 {
     margin: 22px 0 12px;
+    color: #eee;
     font-size: 26px;
+}
+
+.values-grid p {
+    color: #999;
 }
 
 /* Tablet */
@@ -617,7 +658,11 @@ a {
     }
 
     .career-hero {
-        min-height: 560px;
+        min-height: 100vh;
+    }
+
+    .career-hero .hero-content {
+        width: calc(100% - 44px);
     }
 
     .nav-inner {
@@ -640,15 +685,16 @@ a {
     }
 }
 
+@media (min-width: 1201px) {
+    .career-hero .hero-content {
+        transform: translateY(25px);
+    }
+}
+
 /* Mobile */
 
 @media (max-width: 560px) {
-    .main-header {
-        height: 150px;
-    }
-
     .brand {
-        top: 52px;
         left: 16px;
     }
 
@@ -660,25 +706,32 @@ a {
         right: 16px;
     }
 
-    .career-hero {
-        min-height: 100vh;
-    }
-
     .career-hero h1 {
-        font-size: clamp(40px, 13vw, 50px);
+        font-size: clamp(42px, 12vw, 56px);
         letter-spacing: -1.5px;
+        margin-bottom: 42px;
     }
 
-    .career-hero p {
-        font-size: 16px;
+    .career-hero .hero-content > p:not(.life-label) {
+        margin-bottom: 38px;
+        font-size: 15px;
     }
 
     .hero-btn {
+        min-width: min(238px, 100%);
         padding-left: 22px;
+        gap: 12px;
+        font-size: 10px;
+        letter-spacing: 1px;
     }
 
     .hero-actions {
-        gap: 24px;
+        gap: 18px;
+    }
+
+    .life-hero .life-label {
+        top: -25px;
+        left: 15px;
     }
 
     .about-layout,
