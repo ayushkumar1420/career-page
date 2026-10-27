@@ -290,7 +290,7 @@ a {
     }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 851px) {
     .career-hero .mil-animation {
         opacity: 0.08;
     }
@@ -611,7 +611,7 @@ a {
 
 /* Tablet */
 
-@media (max-width: 850px) {
+@media (max-width: 851px) {
     .container {
         width: calc(100% - 44px);
     }
@@ -627,7 +627,7 @@ a {
 
     .about-layout,
     .values-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .about-layout {
@@ -679,6 +679,11 @@ a {
 
     .hero-actions {
         gap: 24px;
+    }
+
+    .about-layout,
+    .values-grid {
+        grid-template-columns: 1fr;
     }
 
     .values-heading h3 {

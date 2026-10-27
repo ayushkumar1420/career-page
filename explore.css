@@ -74,7 +74,8 @@ body {
 }
 
 .opportunities-section {
-    background: #fff;
+    background: #050505;
+    color: #eee;
 }
 
 .explore-section {
@@ -91,10 +92,14 @@ body {
     letter-spacing: -2px;
 }
 
+.opportunities-section h2 {
+    color: #eee;
+}
+
 .explore-section-intro {
     max-width: 720px;
     margin: 0 0 48px;
-    color: #737373;
+    color: #888;
     font-size: 19px;
     line-height: 1.7;
 }
@@ -103,7 +108,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .opportunity-card {
@@ -289,7 +294,7 @@ body {
     display: none;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 851px) {
     .explore-hero .mil-position-1 {
         right: -90px;
     }
