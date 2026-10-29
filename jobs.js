@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!apiBase) {
         var localHost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
         apiBase = localHost
-            ? window.location.protocol + "//" + window.location.hostname + ":8080/career%20admin/"
+            ? window.location.protocol + "//localhost:8080/career%20admin/"
             : "/career-admin/";
     }
     var applicationInProgress = false;

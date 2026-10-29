@@ -18,9 +18,9 @@ POST /career%20admin/api/submit-application.php (local project layout)
 POST /career-admin/api/submit-application.php (production deployment layout)
 ```
 
-The endpoint paths are configured on `.opportunity-grid` and `#application-form` in `explore.html`. The `<meta name="career-api-base">` content is a base URL and prefixes those paths. The current local setting is `http://localhost:5500/career%20admin/`, matching the PHP server currently serving the admin at `localhost:5500` while Explore is opened at `127.0.0.1:5500`.
+The endpoint paths are configured on `.opportunity-grid` and `#application-form` in `explore.html`. The `<meta name="career-api-base">` content is an optional base URL and prefixes those paths. Leave it empty to use the built-in defaults: local requests go to `http://localhost:8080/career%20admin/` whether the page is opened on `localhost` or `127.0.0.1`, and production requests use `/career-admin/` on the current origin. Set a value only when deploying the API at a different base URL.
 
-- Local on the current setup: use `http://localhost:5500/career%20admin/`. If instead running PHP with the backend README command on port 8080, change the meta content to `http://localhost:8080/career%20admin/`.
+- Local: use `http://localhost:8080/career%20admin/`. The PHP backend README includes the server command and enables the required `fileinfo` extension.
 - Production on the same origin: set the meta content to `/career-admin/`, matching the admin project's documented Hostinger deployment path. Relative and root-relative API bases are supported.
 - Separate API origin: set the meta content to its full base, e.g. `content="https://api.example.com/career-admin/"`. Configure the PHP server to allow only the exact website origin through CORS. Do not use wildcard origins with credentials or disable CORS protections.
 
@@ -86,7 +86,7 @@ On a persisted application, return HTTP 201 (or another successful 2xx) and JSON
 
 The existing PHP API returns `{ "error": "Helpful applicant-facing error" }` with HTTP 422 for invalid input and HTTP 500 for server failures. `success: true` means the application was saved, independent of email notification status. The API returns `notification_status` as `Sent`, `Failed`, or `Pending`; the local log-only mode remains `Pending`. The frontend never claims email delivery. Do not return applicant data, stored resume paths, SMTP details, or stack traces. The UI only displays success when the server returns `success: true` and a non-empty `application_id`.
 
-The PHP backend re-checks that the job is published at submission time, validates all fields, validates resume size, PDF structure and detected MIME type, uses generated resume names, and keeps uploads and application records protected from public access. Do not store `applications.json` or resumes under a publicly readable path. Configure PHP upload limits (`upload_max_filesize=5M` and `post_max_size=6M`), storage permissions, request rate limiting, and consent retention according to the site's policies. PHP `fileinfo` is not enabled in the runtime available for this checkout; the endpoint now fails closed until `fileinfo` is enabled. Never trust frontend validation as authoritative.
+The PHP backend re-checks that the job is published at submission time, validates all fields, validates resume size, PDF structure and detected MIME type, uses generated resume names, and keeps uploads and application records protected from public access. Do not store `applications.json` or resumes under a publicly readable path. Configure PHP upload limits (`upload_max_filesize=5M` and `post_max_size=6M`), storage permissions, request rate limiting, and consent retention according to the site's policies. PHP `fileinfo` must be enabled; the endpoint returns a server error rather than accepting uploads without MIME inspection. Never trust frontend validation as authoritative.
 
 ## Run locally
 

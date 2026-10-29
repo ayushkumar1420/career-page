@@ -25,7 +25,7 @@
 .application-form textarea:focus-visible,
 .application-submit:focus-visible {
     outline: 2px solid #cc9226;
-    outline-offset: 4px;
+    outline-offset: 0;
 }
 
 .job-retry-button {
@@ -152,18 +152,6 @@
     grid-column: 1 / -1;
 }
 
-.application-field input,
-.application-field select {
-    width: 100%;
-    padding: 24px;
-    border: 1px solid #333; /* Adjust border color for dark theme */
-    border-radius: 3px;
-    font: inherit;
-    box-sizing: border-box;
-    background-color: #111; /* Dark background matching the phone input */
-    color: #fff;            /* White text for visibility */
-}
-
 .application-form label {
     display: block;
     margin: 0 0 9px;
@@ -173,10 +161,13 @@
 }
 
 .application-form input:not([type="checkbox"]):not([type="file"]),
+.application-form select,
 .application-form textarea {
     display: block;
     width: 100%;
     min-height: 52px;
+    height: auto;
+    margin: 0;
     padding: 13px 15px;
     border: 1px solid #343434;
     border-radius: 4px;
@@ -184,6 +175,7 @@
     color: #f4f4f4;
     font: inherit;
     font-size: 15px;
+    box-sizing: border-box;
 }
 
 .application-form textarea {
@@ -200,18 +192,27 @@
 .application-form input[type="file"] {
     display: block;
     width: 100%;
+    min-height: 54px;
+    height: auto;
+    margin: 0;
+    padding: 8px 12px;
+    border: 1px solid #343434;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #101010;
     color: #bdbdbd;
     font: inherit;
 }
 
 .application-form input[type="file"]::file-selector-button {
     margin-right: 14px;
-    padding: 10px 14px;
+    padding: 8px 14px;
     border: 1px solid #cc9226;
     border-radius: 3px;
     background: transparent;
     color: #e5c27b;
     font: inherit;
+    vertical-align: middle;
     cursor: pointer;
 }
 
