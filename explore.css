@@ -39,6 +39,10 @@ body {
     color: #eee;
 }
 
+.opportunities-section h2 span {
+    font-weight: 300;
+}
+
 .explore-section-intro {
     max-width: 720px;
     margin: 0 0 48px;
@@ -52,6 +56,31 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1px;
     background: rgba(255, 255, 255, 0.04);
+}
+
+.opportunities-feedback {
+    margin: -22px 0 30px;
+    color: #888;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.opportunities-feedback[hidden] {
+    display: none;
+}
+
+.opportunities-error {
+    color: #d7b76f;
+}
+
+.opportunity-empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 28px;
+    color: #888;
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: center;
 }
 
 .opportunity-card {

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore career paths at DeepshiTech and contact our team about opportunities.">
+    <meta name="career-api-base" content="http://localhost:5500/career%20admin/">
     <title>Explore Careers | DeepshiTech</title>
+    <link rel="icon" href="../img/Fev_icon.png" sizes="16x16">
     <link rel="stylesheet" href="../css/plugins/bootstrap-grid.css">
     <link rel="stylesheet" href="../css/plugins/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -14,6 +16,7 @@
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="career.css">
     <link rel="stylesheet" href="explore.css">
+    <link rel="stylesheet" href="apply.css">
 </head>
 <body>
     <header class="main-header">
@@ -51,7 +54,7 @@
         </nav>
     </header>
 
-    <main id="top">
+    <main id="top" class="career-explore-page">
         <section class="career-hero explore-hero">
             <div class="mil-animation-frame" aria-hidden="true">
                 <div class="mil-animation mil-position-1 mil-dark mil-scale"
@@ -113,45 +116,134 @@
 
         <section class="explore-section opportunities-section" id="opportunities">
             <div class="container">
-                <p class="explore-section-label">Find your direction</p>
-                <h2>Explore areas where you can grow</h2>
-                <p class="explore-section-intro">
-                    Explore our current internship opportunities and find a place to build your skills.
-                </p>
+                <div id="job-listing-view">
+                    <p class="explore-section-label">Find your direction</p>
+                    <h2>Explore areas where <span>you can grow</span></h2>
+                    <p class="explore-section-intro">
+                        Explore current opportunities and find a place to build your skills.
+                    </p>
 
-                <div class="opportunity-grid">
-                    <article class="opportunity-card">
-                        <span class="opportunity-number">01</span>
-                        <h3>Web Development Intern</h3>
-                        <p>Learn by contributing to website design, development, and digital experiences.</p>
-                        <div class="opportunity-card-footer">
-                            <span class="opportunity-status">Internship</span>
-                            <span class="opportunity-arrow" aria-hidden="true">→</span>
-                        </div>
-                    </article>
-                    <article class="opportunity-card">
-                        <span class="opportunity-number">02</span>
-                        <h3>SEO Intern</h3>
-                        <p>Build practical experience with search optimization, content research, and site visibility.</p>
-                        <div class="opportunity-card-footer">
-                            <span class="opportunity-status">Internship</span>
-                            <span class="opportunity-arrow" aria-hidden="true">→</span>
-                        </div>
-                    </article>
-                    <article class="opportunity-card">
-                        <span class="opportunity-number">03</span>
-                        <h3>Digital Marketing Intern</h3>
-                        <p>Explore digital campaigns, audience engagement, and marketing content.</p>
-                        <div class="opportunity-card-footer">
-                            <span class="opportunity-status">Internship</span>
-                            <span class="opportunity-arrow" aria-hidden="true">→</span>
-                        </div>
-                    </article>
+                    <p class="opportunities-feedback" id="opportunitiesFeedback" role="status" aria-live="polite">
+                        Loading current opportunities…
+                    </p>
+                    <div class="opportunity-grid" data-jobs-api="public-jobs.php" aria-busy="true"></div>
+                    <p class="opportunities-note">
+                        Published opportunities are updated as roles become available.
+                    </p>
                 </div>
 
-                <p class="opportunities-note">
-                    These internship listings are placeholders for now. Application details will be available once our careers backend is set up.
-                </p>
+                <article class="job-view job-detail-view" id="job-detail-view" aria-labelledby="job-detail-title" hidden>
+                    <a class="job-back-link" href="explore.html#opportunities">← Back to all opportunities</a>
+                    <div id="job-detail-content"></div>
+                    <div class="job-detail-actions">
+                        <a class="hero-btn" id="job-apply-link" href="#application-form">
+                            APPLY NOW <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </article>
+
+                <section class="job-view application-view" id="application-view" aria-labelledby="application-heading" hidden>
+                    <a class="job-back-link" id="application-back-link" href="#job-detail-view">← Back to job details</a>
+                    <p class="explore-section-label">Apply for this role</p>
+                    <h2 id="application-heading">Your next step starts here.</h2>
+                    <p class="application-job-title" id="application-job-title"></p>
+                    <p class="application-intro">Fields marked <span aria-hidden="true">*</span> are required.</p>
+
+                    <form id="application-form" class="application-form" data-application-api="api/submit-application.php"
+                        enctype="multipart/form-data" novalidate>
+                        <div class="application-form-grid">
+                            <div class="application-field">
+                                <label for="applicant-name">Full name <span aria-hidden="true">*</span></label>
+                                <input id="applicant-name" name="full_name" type="text" autocomplete="name" required
+                                    maxlength="120" aria-describedby="applicant-name-error">
+                                <span class="field-error" id="applicant-name-error"></span>
+                            </div>
+                            <div class="application-field">
+                                <label for="applicant-email">Email <span aria-hidden="true">*</span></label>
+                                <input id="applicant-email" name="email" type="email" autocomplete="email" required
+                                    maxlength="254" aria-describedby="applicant-email-error">
+                                <span class="field-error" id="applicant-email-error"></span>
+                            </div>
+                            <div class="application-field">
+                                <label for="applicant-phone">Phone <span aria-hidden="true">*</span></label>
+                                <input id="applicant-phone" name="phone" type="tel" autocomplete="tel" required
+                                    maxlength="30" aria-describedby="applicant-phone-error">
+                                <span class="field-error" id="applicant-phone-error"></span>
+                            </div>
+                            <div class="application-field">
+                                <label for="applicant-location">Location</label>
+                                <select id="applicant-location" name="location">
+                                    <option value="Select location">Select location</option>
+                                    <option value="Navi Mumbai">Navi Mumbai</option>
+                                    <option value="New Delhi">New Delhi</option>
+                                </select>
+                            </div>
+                            <div class="application-field">
+                                <label for="applicant-qualification">Qualification</label>
+                                <input id="applicant-qualification" name="qualification" type="text" maxlength="160">
+                            </div>
+                            <div class="application-field">
+                                <label for="applicant-college">College / university</label>
+                                <input id="applicant-college" name="college" type="text" maxlength="180">
+                            </div>
+                            <div class="application-field">
+                                <label for="applicant-graduation-year">Graduation year</label>
+                                <input id="applicant-graduation-year" name="graduation_year" type="number"
+                                    inputmode="numeric" min="1950">
+                            </div>
+                            <div class="application-field">
+                                <label for="applicant-linkedin">LinkedIn URL</label>
+                                <input id="applicant-linkedin" name="linkedin_url" type="url" inputmode="url"
+                                    placeholder="https://www.linkedin.com/in/…" maxlength="500">
+                                <span class="field-error" id="applicant-linkedin-error"></span>
+                            </div>
+                            <div class="application-field">
+                                <label for="applicant-portfolio">Portfolio / GitHub URL</label>
+                                <input id="applicant-portfolio" name="portfolio_url" type="url" inputmode="url"
+                                    placeholder="https://" maxlength="500">
+                                <span class="field-error" id="applicant-portfolio-error"></span>
+                            </div>
+                            <div class="application-field application-field-wide">
+                                <label for="applicant-cover-letter">Cover letter</label>
+                                <textarea id="applicant-cover-letter" name="cover_letter" rows="5" maxlength="5000"></textarea>
+                            </div>
+                            <div class="application-field application-field-wide">
+                                <label for="applicant-resume">Resume (PDF, max 5 MB) <span aria-hidden="true">*</span></label>
+                                <input id="applicant-resume" name="resume" type="file" accept=".pdf,application/pdf"
+                                    required aria-describedby="applicant-resume-name applicant-resume-error">
+                                <span class="selected-resume" id="applicant-resume-name">No file selected</span>
+                                <span class="field-error" id="applicant-resume-error"></span>
+                            </div>
+                            <div class="application-field application-field-wide">
+                                <div class="application-consent">
+                                    <input id="applicant-consent" name="recruitment_consent" type="checkbox" value="1" required
+                                        aria-describedby="applicant-consent-error">
+                                    <label for="applicant-consent">
+                                        I consent to DeepshiTech processing the information I provide for recruitment
+                                        purposes. <span aria-hidden="true">*</span>
+                                    </label>
+                                </div>
+                                <span class="field-error" id="applicant-consent-error"></span>
+                            </div>
+                        </div>
+
+                        <p class="application-feedback" id="application-feedback" role="alert" aria-live="assertive" hidden></p>
+                        <button class="hero-btn application-submit" id="application-submit" type="submit">
+                            SUBMIT APPLICATION <span aria-hidden="true">→</span>
+                        </button>
+                    </form>
+
+                    <section class="application-success" id="application-success" aria-labelledby="application-success-heading"
+                        tabindex="-1" hidden>
+                        <p class="explore-section-label">Application received</p>
+                        <h2 id="application-success-heading">Thank you for applying to DeepshiTech!</h2>
+                        <p>Your application has been submitted successfully.</p>
+                        <p><strong>Role:</strong> <span id="success-job-title"></span></p>
+                        <p><strong>Application ID:</strong> <span id="success-application-id"></span></p>
+                        <p>The recruitment team will review your profile and contact you if your application progresses
+                            to the next stage.</p>
+                    </section>
+                </section>
             </div>
         </section>
 
@@ -196,6 +288,7 @@
                                         <ul>
                                             <li class="mil-up"><a href="../index.html">Home</a></li>
                                             <li class="mil-up"><a href="../portfolio/index.html">Portfolio</a></li>
+                                            <li class="mil-up"><a href="../services/index.html">Services</a></li>
                                             <li class="mil-up"><a href="../contact/index.html">Contact</a></li>
                                             <li class="mil-up"><a href="../blog/index.php">Blog</a></li>
                                         </ul>
@@ -206,7 +299,6 @@
                                         <li><a href="../privacy-policy/index.html" class="mil-light-soft">Privacy Policy</a></li>
                                         <li><a href="../terms-conditions/index.html" class="mil-light-soft">Terms and conditions</a></li>
                                         <li><a href="../cookie-policy/index.html" class="mil-light-soft">Cookie Policy</a></li>
-                                        <li class="mil-active"><a href="explore.html" class="mil-light-soft">Careers</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -296,6 +388,7 @@
     <script src="../js/ai-tools.js"></script>
     <script src="../js/plugins/gsap.min.js"></script>
     <script src="../js/plugins/ScrollTrigger.min.js"></script>
+    <script src="jobs.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var offices = window.SITE_OFFICES || [];

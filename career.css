@@ -657,6 +657,23 @@ a {
         width: calc(100% - 44px);
     }
 
+    .career-hero .mil-dodecahedron {
+        width: 100px;
+        height: 69px;
+        transform-style: flat;
+        animation: none;
+    }
+
+    .career-hero .mil-pentagon:not(:first-child) {
+        display: none;
+    }
+
+    .career-hero .mil-pentagon:first-child {
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
     .career-hero {
         min-height: 100vh;
     }

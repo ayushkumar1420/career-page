@@ -1,0 +1,325 @@
+.career-explore-page [hidden] {
+    display: none !important;
+}
+
+.career-explore-page.is-job-view .career-hero,
+.career-explore-page.is-job-view .career-nav,
+.career-explore-page.is-job-view .explore-join-section,
+.career-explore-page.is-job-view .explore-cta {
+    display: none;
+}
+
+.career-explore-page.is-job-view .opportunities-section {
+    min-height: 65vh;
+    padding-top: 82px;
+}
+
+.opportunity-card {
+    color: inherit;
+}
+
+.opportunity-card:focus-visible,
+.job-retry-button:focus-visible,
+.job-back-link:focus-visible,
+.application-form input:focus-visible,
+.application-form textarea:focus-visible,
+.application-submit:focus-visible {
+    outline: 2px solid #cc9226;
+    outline-offset: 4px;
+}
+
+.job-retry-button {
+    padding: 3px 8px;
+    border: 1px solid rgba(204, 146, 38, 0.6);
+    border-radius: 999px;
+    background: transparent;
+    color: #e2bd73;
+    font: inherit;
+    cursor: pointer;
+}
+
+.job-view {
+    max-width: 860px;
+    margin: 0 auto;
+    color: #eee;
+    scroll-margin-top: 24px;
+}
+
+.job-back-link {
+    display: inline-flex;
+    margin-bottom: 38px;
+    color: #d7b76f;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.job-back-link:hover {
+    color: #f0d496;
+}
+
+.job-detail-view h1 {
+    margin: 0 0 16px;
+    color: #f3f1ed;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+}
+
+.job-detail-meta {
+    margin: 0 0 44px;
+    color: #d7b76f;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.job-detail-section {
+    margin-top: 36px;
+}
+
+.job-detail-section h2 {
+    margin: 0 0 14px;
+    color: #eee;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+}
+
+.job-detail-section p,
+.job-detail-section li,
+.job-detail-unavailable {
+    color: #aaa;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.job-detail-section p {
+    margin: 0 0 12px;
+}
+
+.job-detail-section ul {
+    margin: 0;
+    padding-left: 22px;
+}
+
+.job-detail-actions {
+    margin-top: 46px;
+}
+
+.application-view > .explore-section-label {
+    margin-top: 0;
+}
+
+.application-view > h2,
+.application-success h2 {
+    margin: 0 0 18px;
+    color: #f3f1ed;
+    font-size: clamp(34px, 4.5vw, 54px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.application-job-title {
+    margin: 0 0 10px;
+    color: #d7b76f;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.application-intro {
+    margin: 0 0 32px;
+    color: #929292;
+    line-height: 1.6;
+}
+
+.application-intro span,
+.application-form label span {
+    color: #d7b76f;
+}
+
+.application-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 24px;
+}
+
+.application-field {
+    min-width: 0;
+}
+
+.application-field-wide {
+    grid-column: 1 / -1;
+}
+
+.application-field input,
+.application-field select {
+    width: 100%;
+    padding: 24px;
+    border: 1px solid #333; /* Adjust border color for dark theme */
+    border-radius: 3px;
+    font: inherit;
+    box-sizing: border-box;
+    background-color: #111; /* Dark background matching the phone input */
+    color: #fff;            /* White text for visibility */
+}
+
+.application-form label {
+    display: block;
+    margin: 0 0 9px;
+    color: #e5e5e5;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.application-form input:not([type="checkbox"]):not([type="file"]),
+.application-form textarea {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    padding: 13px 15px;
+    border: 1px solid #343434;
+    border-radius: 4px;
+    background: #101010;
+    color: #f4f4f4;
+    font: inherit;
+    font-size: 15px;
+}
+
+.application-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.application-form input::placeholder,
+.application-form textarea::placeholder {
+    color: #737373;
+    opacity: 1;
+}
+
+.application-form input[type="file"] {
+    display: block;
+    width: 100%;
+    color: #bdbdbd;
+    font: inherit;
+}
+
+.application-form input[type="file"]::file-selector-button {
+    margin-right: 14px;
+    padding: 10px 14px;
+    border: 1px solid #cc9226;
+    border-radius: 3px;
+    background: transparent;
+    color: #e5c27b;
+    font: inherit;
+    cursor: pointer;
+}
+
+.selected-resume {
+    display: block;
+    margin-top: 9px;
+    color: #929292;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.application-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.application-consent input {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    margin: 2px 0 0;
+    accent-color: #cc9226;
+}
+
+.application-consent label {
+    margin: 0;
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.field-error {
+    display: block;
+    min-height: 0;
+    margin-top: 6px;
+    color: #ffb6a8;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.field-error:not(:empty) {
+    min-height: 18px;
+}
+
+.application-form [aria-invalid="true"] {
+    border-color: #ff8e7c !important;
+}
+
+.application-feedback {
+    margin: 24px 0 0;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 142, 124, 0.45);
+    border-radius: 4px;
+    background: rgba(130, 48, 36, 0.15);
+    color: #ffd0c7;
+    line-height: 1.6;
+}
+
+.application-submit {
+    margin-top: 28px;
+    border: 0;
+    cursor: pointer;
+}
+
+.application-submit:disabled {
+    cursor: wait;
+    filter: grayscale(0.35);
+    opacity: 0.75;
+}
+
+.application-success {
+    margin-top: 28px;
+    padding: clamp(24px, 5vw, 44px);
+    border: 1px solid rgba(204, 146, 38, 0.35);
+    background: #0c0c0c;
+}
+
+.application-success > p:not(.explore-section-label) {
+    color: #b5b5b5;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.application-success > p strong {
+    color: #eee;
+}
+
+@media (max-width: 640px) {
+    .career-explore-page.is-job-view .opportunities-section {
+        padding: 52px 0 68px;
+    }
+
+    .job-back-link {
+        margin-bottom: 28px;
+    }
+
+    .application-form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .application-field-wide {
+        grid-column: auto;
+    }
+
+    .application-submit {
+        width: 100%;
+        min-width: 0;
+    }
+}
