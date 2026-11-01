@@ -163,20 +163,21 @@
                                 <input id="applicant-email" name="email" type="email" autocomplete="email" required
                                     maxlength="254" aria-describedby="applicant-email-error">
                                 <span class="field-error" id="applicant-email-error"></span>
+                                <button class="email-verification-button" id="send-verification-code" type="button">Send verification code</button>
+                                <span class="field-error" id="email-verification-status" role="status" aria-live="polite"></span>
+                            </div>
+                            <div class="application-field" id="email-code-field" hidden>
+                                <label for="applicant-email-code">Email verification code <span aria-hidden="true">*</span></label>
+                                <input id="applicant-email-code" type="text" inputmode="numeric" autocomplete="one-time-code"
+                                    pattern="[0-9]{6}" maxlength="6" aria-describedby="email-code-status">
+                                <button class="email-verification-button" id="verify-email-code" type="button">Verify email</button>
+                                <span class="field-error" id="email-code-status" role="status" aria-live="polite"></span>
                             </div>
                             <div class="application-field">
                                 <label for="applicant-phone">Phone <span aria-hidden="true">*</span></label>
                                 <input id="applicant-phone" name="phone" type="tel" autocomplete="tel" required
                                     maxlength="30" aria-describedby="applicant-phone-error">
                                 <span class="field-error" id="applicant-phone-error"></span>
-                            </div>
-                            <div class="application-field">
-                                <label for="applicant-location">Location</label>
-                                <select id="applicant-location" name="location">
-                                    <option value="Select location">Select location</option>
-                                    <option value="Navi Mumbai">Navi Mumbai</option>
-                                    <option value="New Delhi">New Delhi</option>
-                                </select>
                             </div>
                             <div class="application-field">
                                 <label for="applicant-qualification">Qualification</label>

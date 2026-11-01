@@ -15,6 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var resumeInput = document.getElementById("applicant-resume");
     var resumeName = document.getElementById("applicant-resume-name");
     var successView = document.getElementById("application-success");
+    var emailInput = document.getElementById("applicant-email");
+    var sendCodeButton = document.getElementById("send-verification-code");
+    var codeField = document.getElementById("email-code-field");
+    var codeInput = document.getElementById("applicant-email-code");
+    var verifyCodeButton = document.getElementById("verify-email-code");
+    var verificationStatus = document.getElementById("email-verification-status");
+    var codeStatus = document.getElementById("email-code-status");
     var apiBaseMeta = document.querySelector('meta[name="career-api-base"]');
     var apiBase = apiBaseMeta ? apiBaseMeta.content.trim() : "";
     if (!apiBase) {
@@ -24,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
             : "/career-admin/";
     }
     var applicationInProgress = false;
+    var verificationChallenge = "";
+    var verificationToken = "";
+    var verifiedEmail = "";
     var selectedJob = null;
     var requestedJobId = new URLSearchParams(window.location.search).get("job");
 
@@ -387,6 +397,93 @@ document.addEventListener("DOMContentLoaded", function () {
         applicationFeedback.hidden = false;
     }
 
+    function postVerification(endpoint, values) {
+        var body = new FormData();
+        Object.keys(values).forEach(function (key) { body.set(key, values[key]); });
+        return fetch(apiUrl(endpoint), {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: body
+        }).then(function (response) {
+            return response.json().catch(function () { return null; }).then(function (payload) {
+                if (!response.ok || !payload || payload.success !== true) {
+                    var message = payload && typeof payload.error === "string" ? payload.error : "Email verification failed. Please try again.";
+                    throw new Error(message);
+                }
+                return payload;
+            });
+        });
+    }
+
+    function setVerificationBusy(button, busy, label) {
+        button.disabled = busy;
+        button.textContent = busy ? label : button.getAttribute("data-label");
+    }
+
+    sendCodeButton.setAttribute("data-label", sendCodeButton.textContent);
+    verifyCodeButton.setAttribute("data-label", verifyCodeButton.textContent);
+    sendCodeButton.addEventListener("click", function () {
+        verificationStatus.textContent = "";
+        if (!emailInput.validity.valid || !emailInput.value.trim()) {
+            setFieldError(emailInput, "Enter a valid email address first.");
+            emailInput.focus();
+            return;
+        }
+        setVerificationBusy(sendCodeButton, true, "Sending…");
+        postVerification("api/send-verification-code.php", { email: emailInput.value.trim() })
+            .then(function (payload) {
+                verificationChallenge = payload.challenge_id;
+                verificationToken = "";
+                verifiedEmail = "";
+                codeField.hidden = false;
+                codeInput.required = true;
+                codeInput.value = "";
+                codeStatus.textContent = payload.message || "Check your inbox for the six-digit code.";
+                codeInput.focus();
+            }).catch(function (error) {
+                verificationStatus.textContent = error.message || "Could not send the code. Please try again.";
+            }).finally(function () { setVerificationBusy(sendCodeButton, false); });
+    });
+
+    verifyCodeButton.addEventListener("click", function () {
+        codeStatus.textContent = "";
+        if (!verificationChallenge || !/^\d{6}$/.test(codeInput.value.trim())) {
+            codeStatus.textContent = "Enter the six-digit code sent to your email.";
+            codeInput.focus();
+            return;
+        }
+        setVerificationBusy(verifyCodeButton, true, "Verifying…");
+        postVerification("api/verify-email-code.php", {
+            email: emailInput.value.trim(),
+            challenge_id: verificationChallenge,
+            code: codeInput.value.trim()
+        }).then(function (payload) {
+            verificationToken = payload.verification_token;
+            verifiedEmail = emailInput.value.trim().toLowerCase();
+            codeStatus.textContent = "Email verified successfully.";
+            codeInput.disabled = true;
+            verifyCodeButton.hidden = true;
+            sendCodeButton.hidden = true;
+        }).catch(function (error) {
+            codeStatus.textContent = error.message || "That code could not be verified.";
+        }).finally(function () { setVerificationBusy(verifyCodeButton, false); });
+    });
+
+    emailInput.addEventListener("input", function () {
+        if (verifiedEmail && emailInput.value.trim().toLowerCase() !== verifiedEmail) {
+            verificationToken = "";
+            verifiedEmail = "";
+            verificationChallenge = "";
+            codeInput.disabled = false;
+            codeInput.required = false;
+            codeField.hidden = true;
+            verifyCodeButton.hidden = false;
+            sendCodeButton.hidden = false;
+            verificationStatus.textContent = "Email changed. Verify this address before applying.";
+            codeStatus.textContent = "";
+        }
+    });
+
     function responseMessage(payload, status) {
         if (payload) {
             var message = typeof payload.message === "string" ? payload.message : payload.error;
@@ -432,6 +529,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!validateApplication()) {
             return;
         }
+        if (!verificationToken || verifiedEmail !== emailInput.value.trim().toLowerCase()) {
+            showApplicationError("Verify your email address before submitting your application.");
+            sendCodeButton.focus();
+            return;
+        }
 
         applicationInProgress = true;
         submitButton.disabled = true;
@@ -440,6 +542,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var formData = new FormData(applicationForm);
         formData.set("job_id", jobId(selectedJob));
+        formData.set("verification_token", verificationToken);
 
         fetch(apiUrl(applicationForm.getAttribute("data-application-api")), {
             method: "POST",
