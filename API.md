@@ -18,6 +18,8 @@ POST /career%20admin/api/submit-application.php (local project layout)
 POST /career-admin/api/submit-application.php (production deployment layout)
 ```
 
+Before applying, the page requests an email code with `POST api/send-verification-code.php` (`email`), then verifies it with `POST api/verify-email-code.php` (`email`, `challenge_id`, `code`). The user must include the returned `verification_token` in the final multipart application submission. Codes expire after 10 minutes; tokens expire after 30 minutes and are single-use. The API limits each address to one send per minute and five per hour, each client address to ten sends per hour, and each code to five guesses. Configure backend SMTP for real delivery. Local `CAREER_EMAIL_MODE=log` sends nothing; its protected `private/email-attempts.jsonl` entry contains the development code.
+
 The endpoint paths are configured on `.opportunity-grid` and `#application-form` in `explore.html`. The `<meta name="career-api-base">` content is an optional base URL and prefixes those paths. Leave it empty to use the built-in defaults: local requests go to `http://localhost:8080/career%20admin/` whether the page is opened on `localhost` or `127.0.0.1`, and production requests use `/career-admin/` on the current origin. Set a value only when deploying the API at a different base URL.
 
 - Local: use `http://localhost:8080/career%20admin/`. The PHP backend README includes the server command and enables the required `fileinfo` extension.
@@ -63,6 +65,7 @@ Only published jobs may be returned. Each job needs a stable `id` (or `job_id`) 
 | `job_id` | yes | ID of a currently published job |
 | `full_name` | yes | Applicant name |
 | `email` | yes | Valid email |
+| `verification_token` | yes | Single-use token returned by the email verification endpoint |
 | `phone` | yes | Phone number |
 | `resume` | yes | PDF file, maximum 5 MiB |
 | `recruitment_consent` | yes | `1` |

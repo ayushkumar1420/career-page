@@ -178,6 +178,13 @@
     box-sizing: border-box;
 }
 
+/* The shared site theme uppercases all inputs; application fields should retain typed case. */
+.application-form input:not([type="checkbox"]):not([type="file"]),
+.application-form textarea {
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
 .application-form textarea {
     min-height: 140px;
     resize: vertical;
@@ -256,6 +263,24 @@
 
 .field-error:not(:empty) {
     min-height: 18px;
+}
+
+.email-verification-button {
+    width: fit-content;
+    margin-top: 10px;
+    padding: 9px 14px;
+    border: 1px solid rgba(204, 146, 38, 0.65);
+    border-radius: 3px;
+    background: transparent;
+    color: #e5c27b;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.email-verification-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
 }
 
 .application-form [aria-invalid="true"] {

@@ -20,7 +20,7 @@
 </head>
 <body>
     <header class="main-header">
-        <a href="../index.html" class="brand">
+        <a href="/index.php" class="brand">
             <img src="logo.png" alt="DeepshiTech">
         </a>
 
@@ -47,8 +47,8 @@
         </div>
 
         <nav class="main-links" id="careerMainNav" aria-label="Main navigation">
-            <a href="../index.html">Home</a>
-            <a href="../index.html#about">Our Story</a>
+            <a href="/index.php">Home</a>
+            <a href="/index.php#about">Our Story</a>
             <a href="../portfolio/index.html">Our Projects</a>
             <a href="../contact/index.html">Contact Us</a>
         </nav>
@@ -163,20 +163,21 @@
                                 <input id="applicant-email" name="email" type="email" autocomplete="email" required
                                     maxlength="254" aria-describedby="applicant-email-error">
                                 <span class="field-error" id="applicant-email-error"></span>
+                                <button class="email-verification-button" id="send-verification-code" type="button">Send verification code</button>
+                                <span class="field-error" id="email-verification-status" role="status" aria-live="polite"></span>
+                            </div>
+                            <div class="application-field" id="email-code-field" hidden>
+                                <label for="applicant-email-code">Email verification code <span aria-hidden="true">*</span></label>
+                                <input id="applicant-email-code" type="text" inputmode="numeric" autocomplete="one-time-code"
+                                    pattern="[0-9]{6}" maxlength="6" aria-describedby="email-code-status">
+                                <button class="email-verification-button" id="verify-email-code" type="button">Verify email</button>
+                                <span class="field-error" id="email-code-status" role="status" aria-live="polite"></span>
                             </div>
                             <div class="application-field">
                                 <label for="applicant-phone">Phone <span aria-hidden="true">*</span></label>
                                 <input id="applicant-phone" name="phone" type="tel" autocomplete="tel" required
                                     maxlength="30" aria-describedby="applicant-phone-error">
                                 <span class="field-error" id="applicant-phone-error"></span>
-                            </div>
-                            <div class="application-field">
-                                <label for="applicant-location">Location</label>
-                                <select id="applicant-location" name="location">
-                                    <option value="Select location">Select location</option>
-                                    <option value="Navi Mumbai">Navi Mumbai</option>
-                                    <option value="New Delhi">New Delhi</option>
-                                </select>
                             </div>
                             <div class="application-field">
                                 <label for="applicant-qualification">Qualification</label>
@@ -286,7 +287,7 @@
                                 <div class="col-md-6 col-lg-7">
                                     <nav class="mil-footer-menu mil-mb-60" aria-label="Footer navigation">
                                         <ul>
-                                            <li class="mil-up"><a href="../index.html">Home</a></li>
+                                            <li class="mil-up"><a href="/index.php">Home</a></li>
                                             <li class="mil-up"><a href="../portfolio/index.html">Portfolio</a></li>
                                             <li class="mil-up"><a href="../services/index.html">Services</a></li>
                                             <li class="mil-up"><a href="../contact/index.html">Contact</a></li>
@@ -344,7 +345,7 @@
 
                             <div class="footer-copyright">
                                 <p>Copyright 2026. All Rights Reserved.</p>
-                                <p>Designed by <a href="../index.html">DeepshiTech Private Limited</a></p>
+                                <p>Designed by <a href="/index.php">DeepshiTech Private Limited</a></p>
                             </div>
                         </div>
 
