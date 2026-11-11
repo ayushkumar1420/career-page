@@ -26,9 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var apiBase = apiBaseMeta ? apiBaseMeta.content.trim() : "";
     if (!apiBase) {
         var localHost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-        apiBase = localHost
-            ? window.location.protocol + "//localhost:8080/career%20admin/"
-            : "/career-admin/";
+        if (localHost && (!window.location.port || window.location.port === "80")) {
+            var careerPath = window.location.pathname.match(/^(.*)\/career(?:\/|$)/i);
+            apiBase = window.location.origin + (careerPath ? careerPath[1] : "") + "/career-admin/";
+        } else {
+            apiBase = localHost
+                ? window.location.protocol + "//localhost:8080/career-admin/"
+                : "/career-admin/";
+        }
     }
     var applicationInProgress = false;
     var verificationChallenge = "";

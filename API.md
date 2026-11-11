@@ -1,28 +1,28 @@
 # Careers applications integration
 
-The Careers frontend is in this directory. The PHP admin project is a separate sibling directory at `..\career admin\`. Its canonical public jobs endpoint is `public-jobs.php`; the canonical application endpoint is `api\submit-application.php`. The frontend does not contain sample jobs or simulate a successful submission.
+The Careers frontend is in this directory. The PHP admin project is a separate sibling directory at `..\career-admin\`. Its canonical public jobs endpoint is `public-jobs.php`; the canonical application endpoint is `api\submit-application.php`. The frontend does not contain sample jobs or simulate a successful submission.
 
 ## API URLs and configuration
 
-The page reads published jobs from `career admin\public-jobs.php`:
+The page reads published jobs from `career-admin\public-jobs.php`:
 
 ```text
-GET /career%20admin/public-jobs.php (local project layout)
+GET /career-admin/public-jobs.php (local project layout)
 GET /career-admin/public-jobs.php (production deployment layout)
 ```
 
-Applications are submitted to `career admin\api\submit-application.php`:
+Applications are submitted to `career-admin\api\submit-application.php`:
 
 ```text
-POST /career%20admin/api/submit-application.php (local project layout)
+POST /career-admin/api/submit-application.php (local project layout)
 POST /career-admin/api/submit-application.php (production deployment layout)
 ```
 
-Before applying, the page requests an email code with `POST api/send-verification-code.php` (`email`), then verifies it with `POST api/verify-email-code.php` (`email`, `challenge_id`, `code`). The user must include the returned `verification_token` in the final multipart application submission. Codes expire after 10 minutes; tokens expire after 30 minutes and are single-use. The API limits each address to one send per minute and five per hour, each client address to ten sends per hour, and each code to five guesses. Configure backend SMTP for real delivery. Local `CAREER_EMAIL_MODE=log` sends nothing; its protected `private/email-attempts.jsonl` entry contains the development code.
+Before applying, the page requests an email code with `POST api/send-verification-code.php` (`email`), then verifies it with `POST api/verify-email-code.php` (`email`, `challenge_id`, `code`). The user must include the returned `verification_token` in the final multipart application submission. Codes expire after 10 minutes; tokens expire after 30 minutes and are single-use. The API limits each address to one send per minute and five per hour, each client address to ten sends per hour, and each code to five guesses. Career email uses the website's shared `_private/lib.php` mail helper. On localhost, when `local_real_mail` is disabled in `_private/config.php`, no email is sent; the message (including the OTP for local testing) is written to `_private/dev-mail.log`. The admin stores only hashes of verification codes and tokens.
 
-The endpoint paths are configured on `.opportunity-grid` and `#application-form` in `explore.html`. The `<meta name="career-api-base">` content is an optional base URL and prefixes those paths. Leave it empty to use the built-in defaults: local requests go to `http://localhost:8080/career%20admin/` whether the page is opened on `localhost` or `127.0.0.1`, and production requests use `/career-admin/` on the current origin. Set a value only when deploying the API at a different base URL.
+The API base is configured by the optional `<meta name="career-api-base">` in `explore.html`. Leave it empty to use the built-in defaults: a local page on port `80` uses `/career-admin/` under the website's current project path; other localhost/127.0.0.1 ports use `http://localhost:8080/career-admin/`; production uses `/career-admin/` on the current origin. The local API allows localhost and 127.0.0.1 origins on any port. Since `localhost` refers to the computer running the browser, a page opened on another computer cannot use your development machine's localhost API; use a reachable testing domain or set a reachable API base instead.
 
-- Local: use `http://localhost:8080/career%20admin/`. The PHP backend README includes the server command and enables the required `fileinfo` extension.
+- Local: use `http://localhost:8080/career-admin/`. The PHP backend README includes the server command and enables the required `fileinfo` extension.
 - Production on the same origin: set the meta content to `/career-admin/`, matching the admin project's documented Hostinger deployment path. Relative and root-relative API bases are supported.
 - Separate API origin: set the meta content to its full base, e.g. `content="https://api.example.com/career-admin/"`. Configure the PHP server to allow only the exact website origin through CORS. Do not use wildcard origins with credentials or disable CORS protections.
 
@@ -32,7 +32,7 @@ Do not put SMTP settings, credentials, or other private server configuration in 
 
 ### Published jobs
 
-`GET /career-admin/public-jobs.php` (or the local `/career%20admin/public-jobs.php`) returns JSON with a `jobs` array and HTTP 200:
+`GET /career-admin/public-jobs.php` returns JSON with a `jobs` array and HTTP 200:
 
 ```json
 {
@@ -58,7 +58,7 @@ Only published jobs may be returned. Each job needs a stable `id` (or `job_id`) 
 
 ### Submit an application
 
-`POST /career-admin/api/submit-application.php` (or the local `/career%20admin/api/submit-application.php`) accepts `multipart/form-data` with these names:
+`POST /career-admin/api/submit-application.php` accepts `multipart/form-data` with these names:
 
 | Field | Required | Expected value |
 |---|---:|---|
@@ -98,21 +98,20 @@ The PHP backend re-checks that the job is published at submission time, validate
 Open PowerShell in the PHP backend directory and run:
 
 ```powershell
-Set-Location "C:\Users\ayush\Downloads\DeepshiTechW1\career admin"
-$env:CAREER_EMAIL_MODE = "log"
+Set-Location "C:\xampp\htdocs\DeepshiTech2026FinalSite\career-admin"
 $phpDir = Split-Path (Get-Command php).Source
 php -d "extension_dir=$phpDir\ext" -d extension=php_fileinfo.dll `
   -d upload_max_filesize=5M -d post_max_size=6M `
   -S localhost:8080 -t .. .\router.php
 ```
 
-Open the website at `http://localhost:8080/DeepshiTechW1/career/explore.html` and the admin at `http://localhost:8080/career%20admin/`. This uses the real PHP endpoints on the same origin; the default local email mode logs a no-delivery attempt and does not claim that HR mail was sent. Remove the environment setting when finished with `Remove-Item Env:CAREER_EMAIL_MODE`.
+Open the website at `http://localhost:8080/career/explore.html` and the admin at `http://localhost:8080/career-admin/`. On localhost, the shared mail helper logs emails (including verification codes) to the website's `_private/dev-mail.log` instead of delivering them when `local_real_mail` is disabled.
 
-The installed PHP runtime is 8.4.27. `fileinfo` is not enabled by default, but its DLL is included with this PHP package; the command above enables it for the local server. The backend fails closed if MIME inspection is unavailable. The runtime has no enabled `openssl` module and no SMTP configuration was supplied, so test the local notification flow with `CAREER_EMAIL_MODE=log`; actual SMTP delivery requires the server-side SMTP settings and OpenSSL.
+The backend fails closed if MIME inspection is unavailable. The command above enables PHP's `fileinfo` extension for the local server. Production email delivery uses the website's shared PHP mail configuration; no mail credentials should be added to frontend files.
 
 ### Optional: separate frontend Live Server and PHP API
 
-Run the PHP command above in one terminal. In another terminal, start Live Server on the website folder and open `http://127.0.0.1:5500/career/explore.html`. The frontend will request the API from `http://127.0.0.1:8080/career%20admin/`; the PHP backend explicitly allows `127.0.0.1:5500` and `localhost:5500`. Do not replace these allow-lists with wildcard CORS.
+Run the PHP command above in one terminal. In another terminal, start Live Server on the website folder and open `http://127.0.0.1:5500/career/explore.html`. The frontend will request the API from `http://localhost:8080/career-admin/`; the PHP backend allows localhost and 127.0.0.1 origins on any port. Do not replace the origin checks with wildcard CORS.
 
 ## Verification checklist
 
