@@ -132,119 +132,120 @@
                     </p>
                 </div>
 
-                <article class="job-view job-detail-view" id="job-detail-view" aria-labelledby="job-detail-title" hidden>
-                    <a class="job-back-link" href="explore.html#opportunities">← Back to all opportunities</a>
-                    <div id="job-detail-content"></div>
-                    <div class="job-detail-actions">
-                        <a class="hero-btn" id="job-apply-link" href="#application-form">
-                            APPLY NOW <span aria-hidden="true">→</span>
-                        </a>
-                    </div>
-                </article>
-
-                <section class="job-view application-view" id="application-view" aria-labelledby="application-heading" hidden>
-                    <a class="job-back-link" id="application-back-link" href="#job-detail-view">← Back to job details</a>
-                    <p class="explore-section-label">Apply for this role</p>
-                    <h2 id="application-heading">Your next step starts here.</h2>
-                    <p class="application-job-title" id="application-job-title"></p>
-                    <p class="application-intro">Fields marked <span aria-hidden="true">*</span> are required.</p>
-
-                    <form id="application-form" class="application-form" data-application-api="api/submit-application.php"
-                        enctype="multipart/form-data" novalidate>
-                        <div class="application-form-grid">
-                            <div class="application-field">
-                                <label for="applicant-name">Full name <span aria-hidden="true">*</span></label>
-                                <input id="applicant-name" name="full_name" type="text" autocomplete="name" required
-                                    maxlength="120" aria-describedby="applicant-name-error">
-                                <span class="field-error" id="applicant-name-error"></span>
-                            </div>
-                            <div class="application-field">
-                                <label for="applicant-email">Email <span aria-hidden="true">*</span></label>
-                                <input id="applicant-email" name="email" type="email" autocomplete="email" required
-                                    maxlength="254" aria-describedby="applicant-email-error">
-                                <span class="field-error" id="applicant-email-error"></span>
-                                <button class="email-verification-button" id="send-verification-code" type="button">Send verification code</button>
-                                <span class="field-error" id="email-verification-status" role="status" aria-live="polite"></span>
-                            </div>
-                            <div class="application-field" id="email-code-field" hidden>
-                                <label for="applicant-email-code">Email verification code <span aria-hidden="true">*</span></label>
-                                <input id="applicant-email-code" type="text" inputmode="numeric" autocomplete="one-time-code"
-                                    pattern="[0-9]{6}" maxlength="6" aria-describedby="email-code-status">
-                                <button class="email-verification-button" id="verify-email-code" type="button">Verify email</button>
-                                <span class="field-error" id="email-code-status" role="status" aria-live="polite"></span>
-                            </div>
-                            <div class="application-field">
-                                <label for="applicant-phone">Phone <span aria-hidden="true">*</span></label>
-                                <input id="applicant-phone" name="phone" type="tel" autocomplete="tel" required
-                                    maxlength="30" aria-describedby="applicant-phone-error">
-                                <span class="field-error" id="applicant-phone-error"></span>
-                            </div>
-                            <div class="application-field">
-                                <label for="applicant-qualification">Qualification</label>
-                                <input id="applicant-qualification" name="qualification" type="text" maxlength="160">
-                            </div>
-                            <div class="application-field">
-                                <label for="applicant-college">College / university</label>
-                                <input id="applicant-college" name="college" type="text" maxlength="180">
-                            </div>
-                            <div class="application-field">
-                                <label for="applicant-graduation-year">Graduation year</label>
-                                <input id="applicant-graduation-year" name="graduation_year" type="number"
-                                    inputmode="numeric" min="1950">
-                            </div>
-                            <div class="application-field">
-                                <label for="applicant-linkedin">LinkedIn URL</label>
-                                <input id="applicant-linkedin" name="linkedin_url" type="url" inputmode="url"
-                                    placeholder="https://www.linkedin.com/in/…" maxlength="500">
-                                <span class="field-error" id="applicant-linkedin-error"></span>
-                            </div>
-                            <div class="application-field">
-                                <label for="applicant-portfolio">Portfolio / GitHub URL</label>
-                                <input id="applicant-portfolio" name="portfolio_url" type="url" inputmode="url"
-                                    placeholder="https://" maxlength="500">
-                                <span class="field-error" id="applicant-portfolio-error"></span>
-                            </div>
-                            <div class="application-field application-field-wide">
-                                <label for="applicant-cover-letter">Cover letter</label>
-                                <textarea id="applicant-cover-letter" name="cover_letter" rows="5" maxlength="5000"></textarea>
-                            </div>
-                            <div class="application-field application-field-wide">
-                                <label for="applicant-resume">Resume (PDF, max 5 MB) <span aria-hidden="true">*</span></label>
-                                <input id="applicant-resume" name="resume" type="file" accept=".pdf,application/pdf"
-                                    required aria-describedby="applicant-resume-name applicant-resume-error">
-                                <span class="selected-resume" id="applicant-resume-name">No file selected</span>
-                                <span class="field-error" id="applicant-resume-error"></span>
-                            </div>
-                            <div class="application-field application-field-wide">
-                                <div class="application-consent">
-                                    <input id="applicant-consent" name="recruitment_consent" type="checkbox" value="1" required
-                                        aria-describedby="applicant-consent-error">
-                                    <label for="applicant-consent">
-                                        I consent to DeepshiTech processing the information I provide for recruitment
-                                        purposes. <span aria-hidden="true">*</span>
-                                    </label>
-                                </div>
-                                <span class="field-error" id="applicant-consent-error"></span>
-                            </div>
+                <div class="job-view job-application-panel" id="job-detail-view" hidden>
+                    <article class="job-detail-view" aria-labelledby="job-detail-title">
+                        <a class="job-back-link" href="explore.html#opportunities">← Back to all opportunities</a>
+                        <div id="job-detail-content"></div>
+                        <div class="job-detail-actions">
+                            <a class="hero-btn" id="job-apply-link" href="#application-form">
+                                APPLY NOW <span aria-hidden="true">→</span>
+                            </a>
                         </div>
+                    </article>
 
-                        <p class="application-feedback" id="application-feedback" role="alert" aria-live="assertive" hidden></p>
-                        <button class="hero-btn application-submit" id="application-submit" type="submit">
-                            SUBMIT APPLICATION <span aria-hidden="true">→</span>
-                        </button>
-                    </form>
-
-                    <section class="application-success" id="application-success" aria-labelledby="application-success-heading"
-                        tabindex="-1" hidden>
-                        <p class="explore-section-label">Application received</p>
-                        <h2 id="application-success-heading">Thank you for applying to DeepshiTech!</h2>
-                        <p>Your application has been submitted successfully.</p>
-                        <p><strong>Role:</strong> <span id="success-job-title"></span></p>
-                        <p><strong>Application ID:</strong> <span id="success-application-id"></span></p>
-                        <p>The recruitment team will review your profile and contact you if your application progresses
-                            to the next stage.</p>
+                    <section class="application-view" id="application-view" aria-labelledby="application-heading">
+                        <p class="explore-section-label">Apply for this role</p>
+                        <h2 id="application-heading">Your next step starts here.</h2>
+                        <p class="application-job-title" id="application-job-title"></p>
+                        <p class="application-intro">Fields marked <span aria-hidden="true">*</span> are required.</p>
+    
+                        <form id="application-form" class="application-form" data-application-api="api/submit-application.php"
+                            enctype="multipart/form-data" novalidate>
+                            <div class="application-form-grid">
+                                <div class="application-field">
+                                    <label for="applicant-name">Full name <span aria-hidden="true">*</span></label>
+                                    <input id="applicant-name" name="full_name" type="text" autocomplete="name" required
+                                        maxlength="120" aria-describedby="applicant-name-error">
+                                    <span class="field-error" id="applicant-name-error"></span>
+                                </div>
+                                <div class="application-field">
+                                    <label for="applicant-email">Email <span aria-hidden="true">*</span></label>
+                                    <input id="applicant-email" name="email" type="email" autocomplete="email" required
+                                        maxlength="254" aria-describedby="applicant-email-error">
+                                    <span class="field-error" id="applicant-email-error"></span>
+                                    <button class="email-verification-button" id="send-verification-code" type="button">Send verification code</button>
+                                    <span class="field-error" id="email-verification-status" role="status" aria-live="polite"></span>
+                                </div>
+                                <div class="application-field" id="email-code-field" hidden>
+                                    <label for="applicant-email-code">Email verification code <span aria-hidden="true">*</span></label>
+                                    <input id="applicant-email-code" type="text" inputmode="numeric" autocomplete="one-time-code"
+                                        pattern="[0-9]{6}" maxlength="6" aria-describedby="email-code-status">
+                                    <button class="email-verification-button" id="verify-email-code" type="button">Verify email</button>
+                                    <span class="field-error" id="email-code-status" role="status" aria-live="polite"></span>
+                                </div>
+                                <div class="application-field">
+                                    <label for="applicant-phone">Phone <span aria-hidden="true">*</span></label>
+                                    <input id="applicant-phone" name="phone" type="tel" autocomplete="tel" required
+                                        maxlength="30" aria-describedby="applicant-phone-error">
+                                    <span class="field-error" id="applicant-phone-error"></span>
+                                </div>
+                                <div class="application-field">
+                                    <label for="applicant-qualification">Qualification</label>
+                                    <input id="applicant-qualification" name="qualification" type="text" maxlength="160">
+                                </div>
+                                <div class="application-field">
+                                    <label for="applicant-college">College / university</label>
+                                    <input id="applicant-college" name="college" type="text" maxlength="180">
+                                </div>
+                                <div class="application-field">
+                                    <label for="applicant-graduation-year">Graduation year</label>
+                                    <input id="applicant-graduation-year" name="graduation_year" type="number"
+                                        inputmode="numeric" min="1950">
+                                </div>
+                                <div class="application-field">
+                                    <label for="applicant-linkedin">LinkedIn URL</label>
+                                    <input id="applicant-linkedin" name="linkedin_url" type="url" inputmode="url"
+                                        placeholder="https://www.linkedin.com/in/…" maxlength="500">
+                                    <span class="field-error" id="applicant-linkedin-error"></span>
+                                </div>
+                                <div class="application-field">
+                                    <label for="applicant-portfolio">Portfolio / GitHub URL</label>
+                                    <input id="applicant-portfolio" name="portfolio_url" type="url" inputmode="url"
+                                        placeholder="https://" maxlength="500">
+                                    <span class="field-error" id="applicant-portfolio-error"></span>
+                                </div>
+                                <div class="application-field application-field-wide">
+                                    <label for="applicant-cover-letter">Cover letter</label>
+                                    <textarea id="applicant-cover-letter" name="cover_letter" rows="5" maxlength="5000"></textarea>
+                                </div>
+                                <div class="application-field application-field-wide">
+                                    <label for="applicant-resume">Resume (PDF, max 5 MB) <span aria-hidden="true">*</span></label>
+                                    <input id="applicant-resume" name="resume" type="file" accept=".pdf,application/pdf"
+                                        required aria-describedby="applicant-resume-name applicant-resume-error">
+                                    <span class="selected-resume" id="applicant-resume-name">No file selected</span>
+                                    <span class="field-error" id="applicant-resume-error"></span>
+                                </div>
+                                <div class="application-field application-field-wide">
+                                    <div class="application-consent">
+                                        <input id="applicant-consent" name="recruitment_consent" type="checkbox" value="1" required
+                                            aria-describedby="applicant-consent-error">
+                                        <label for="applicant-consent">
+                                            I consent to DeepshiTech processing the information I provide for recruitment
+                                            purposes. <span aria-hidden="true">*</span>
+                                        </label>
+                                    </div>
+                                    <span class="field-error" id="applicant-consent-error"></span>
+                                </div>
+                            </div>
+    
+                            <p class="application-feedback" id="application-feedback" role="alert" aria-live="assertive" hidden></p>
+                            <button class="hero-btn application-submit" id="application-submit" type="submit">
+                                SUBMIT APPLICATION <span aria-hidden="true">→</span>
+                            </button>
+                        </form>
+    
+                        <section class="application-success" id="application-success" aria-labelledby="application-success-heading"
+                            tabindex="-1" hidden>
+                            <p class="explore-section-label">Application received</p>
+                            <h2 id="application-success-heading">Thank you for applying to DeepshiTech!</h2>
+                            <p>Your application has been submitted successfully.</p>
+                            <p><strong>Role:</strong> <span id="success-job-title"></span></p>
+                            <p><strong>Application ID:</strong> <span id="success-application-id"></span></p>
+                            <p>The recruitment team will review your profile and contact you if your application progresses
+                                to the next stage.</p>
+                        </section>
                     </section>
-                </section>
+                </div>
             </div>
         </section>
 

@@ -45,6 +45,25 @@
     scroll-margin-top: 24px;
 }
 
+.job-application-panel {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(24px, 5vw, 52px);
+    border: 1px solid rgba(204, 146, 38, 0.42);
+    border-radius: 28px;
+    background:
+        radial-gradient(ellipse at 100% 0, rgba(204, 146, 38, 0.09), transparent 34%),
+        #050505;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.job-application-panel > article,
+.job-application-panel > section {
+    position: relative;
+    z-index: 1;
+}
+
 .job-back-link {
     display: inline-flex;
     margin-bottom: 38px;
@@ -104,6 +123,12 @@
 
 .job-detail-actions {
     margin-top: 46px;
+}
+
+.application-view {
+    margin-top: 52px;
+    padding-top: clamp(32px, 5vw, 48px);
+    border-top: 1px solid rgba(204, 146, 38, 0.28);
 }
 
 .application-view > .explore-section-label {
@@ -170,7 +195,7 @@
     margin: 0;
     padding: 13px 15px;
     border: 1px solid #343434;
-    border-radius: 4px;
+    border-radius: 12px;
     background: #101010;
     color: #f4f4f4;
     font: inherit;
@@ -204,7 +229,7 @@
     margin: 0;
     padding: 8px 12px;
     border: 1px solid #343434;
-    border-radius: 4px;
+    border-radius: 12px;
     box-sizing: border-box;
     background: #101010;
     color: #bdbdbd;
@@ -215,7 +240,7 @@
     margin-right: 14px;
     padding: 8px 14px;
     border: 1px solid #cc9226;
-    border-radius: 3px;
+    border-radius: 10px;
     background: transparent;
     color: #e5c27b;
     font: inherit;
@@ -333,6 +358,15 @@
 
     .job-back-link {
         margin-bottom: 28px;
+    }
+
+    .job-application-panel {
+        padding: 24px 18px;
+        border-radius: 20px;
+    }
+
+    .application-view {
+        margin-top: 40px;
     }
 
     .application-form-grid {
