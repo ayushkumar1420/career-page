@@ -21,6 +21,16 @@
     margin-top: 0;
 }
 
+.career-explore-page.application-page #job-detail-view > .job-detail-view {
+    display: none;
+}
+
+.career-explore-page.application-page .application-view {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+}
+
 .career-explore-page.application-page .job-detail-actions {
     display: none;
 }
