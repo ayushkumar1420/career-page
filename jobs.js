@@ -41,8 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var selectedJob = null;
     var requestedJobId = new URLSearchParams(window.location.search).get("job");
 
-    if (!grid || !feedback || !page || !listingView || !detailView || !detailContent
-        || !applicationView || !applicationForm) {
+    if (!grid || !feedback || !page || !listingView || !detailView || !detailContent) {
         return;
     }
 
@@ -100,6 +99,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return "explore.html?job=" + encodeURIComponent(id) + hash;
     }
 
+    function createApplicationUrl(id) {
+        return "apply.html?job=" + encodeURIComponent(id);
+    }
+
     function setListingMessage(message, isError, retry) {
         feedback.textContent = message;
         feedback.hidden = false;
@@ -150,7 +153,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderJobDetails(job) {
         selectedJob = job;
         detailContent.replaceChildren();
-        applicationView.hidden = false;
+        if (applicationView) {
+            applicationView.hidden = false;
+        }
 
         var title = document.createElement("h1");
         title.id = "job-detail-title";
@@ -198,8 +203,10 @@ document.addEventListener("DOMContentLoaded", function () {
         about.append(aboutHeading, aboutCopy);
         detailContent.appendChild(about);
 
-        applyLink.href = "#application-form";
-        applicationJobTitle.textContent = title.textContent;
+        applyLink.href = createApplicationUrl(jobId(job));
+        if (applicationJobTitle) {
+            applicationJobTitle.textContent = title.textContent;
+        }
     }
 
     function showJobUnavailable(message) {
@@ -212,7 +219,9 @@ document.addEventListener("DOMContentLoaded", function () {
         explanation.textContent = message;
         detailContent.append(heading, explanation);
         applyLink.hidden = true;
-        applicationView.hidden = true;
+        if (applicationView) {
+            applicationView.hidden = true;
+        }
     }
 
     function showView(view) {
@@ -305,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     applyLink.hidden = false;
                     renderJobDetails(selected);
-                    if (window.location.hash === "#application-form") {
+                    if (applicationForm && window.location.hash === "#application-form") {
                         window.requestAnimationFrame(function () {
                             applicationForm.scrollIntoView({ block: "start" });
                         });
@@ -325,6 +334,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }).finally(function () {
             grid.setAttribute("aria-busy", "false");
         });
+    }
+
+    if (!applicationView || !applicationForm) {
+        loadJobs();
+        return;
     }
 
     function setFieldError(field, message) {

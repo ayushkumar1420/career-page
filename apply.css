@@ -2,6 +2,29 @@
     display: none !important;
 }
 
+/* Applications live on their own page; keep the explore view focused on role details. */
+.career-explore-page:not(.application-page) .application-view {
+    display: none !important;
+}
+
+.career-explore-page.application-page {
+    min-height: 100vh;
+    padding-top: 82px;
+}
+
+.career-explore-page.application-page .opportunities-section {
+    min-height: calc(100vh - 82px);
+    padding: 0 0 96px;
+}
+
+.career-explore-page.application-page .job-application-panel {
+    margin-top: 0;
+}
+
+.career-explore-page.application-page .job-detail-actions {
+    display: none;
+}
+
 .career-explore-page.is-job-view .career-hero,
 .career-explore-page.is-job-view .career-nav,
 .career-explore-page.is-job-view .explore-join-section,
