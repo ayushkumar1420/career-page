@@ -140,83 +140,95 @@ a {
     transform: rotate(-45deg);
 }
 
+/* Main links (legacy hidden) */
 .main-links {
-    position: absolute;
-    top: 118px;
-    right: 4.2%;
-    z-index: 4;
-    display: none;
-    min-width: 210px;
-    flex-direction: column;
-    gap: 0;
-    padding: 10px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 10px;
-    background: rgba(12, 12, 12, 0.96);
-}
-
-.main-links.is-open {
-    display: flex;
-}
-
-.main-links a {
-    display: block;
-    padding: 12px 4px;
-    color: var(--cream);
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: color 0.3s;
-}
-
-.main-links a:hover {
-    color: var(--gold);
-}
-
-/* Match the full-screen navigation used across the main site. */
-.main-links.is-open {
-    position: fixed;
-    inset: 0;
-    z-index: 9998;
-    display: flex !important;
-    width: 100vw !important;
-    max-width: none !important;
-    min-width: 0;
-    height: 100vh;
-    height: 100dvh;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0;
-    padding: 230px 13% 80px;
-    overflow-y: auto;
-    border: 0;
-    border-radius: 0;
-    background: #000;
-}
-
-.main-links.is-open a {
-    padding: 10px 0;
-    color: var(--cream);
-    font-size: clamp(32px, 3.2vw, 48px);
-    font-weight: 500;
-    line-height: 1.25;
-    letter-spacing: normal;
-    text-transform: none;
-}
-
-.main-links.is-open a:first-child {
-    color: var(--gold);
-}
-
-body:has(.main-links.is-open) .brand,
-body:has(.main-links.is-open) .career-header-controls {
-    z-index: 9999;
-}
-
-body:has(.main-links.is-open) .career-header-controls .mil-lang-switcher {
     display: none !important;
+}
+
+/* =========================================================
+   FULLSCREEN NAVIGATION MENU — MATCH MAIN SITE
+========================================================= */
+
+.mil-menu-frame {
+    z-index: 99999 !important;
+}
+
+/* Desktop hover & flyout guarantees */
+@media screen and (min-width: 993px) {
+    .mil-menu-frame .mil-main-menu > ul > li.mil-services-menu-item > ul#servicesMenuList {
+        top: -80px !important;
+        overflow: visible !important;
+        max-height: none !important;
+        padding-left: 35px !important;
+    }
+
+    .mil-menu-frame .mil-main-menu > ul > li.mil-services-menu-item > ul#servicesMenuList > li.mil-service-menu-group {
+        position: relative !important;
+        padding: 3px 0 !important;
+        margin: 0 !important;
+        width: fit-content !important;
+    }
+
+    .mil-menu-frame .mil-main-menu > ul > li.mil-services-menu-item > ul#servicesMenuList > li.mil-service-menu-group > a {
+        font-size: 13px !important;
+        line-height: 1.35 !important;
+        white-space: nowrap !important;
+        color: rgba(255, 255, 255, 0.78) !important;
+        transition: color 0.2s ease, transform 0.2s ease !important;
+        display: inline-block !important;
+    }
+
+    .mil-menu-frame .mil-main-menu > ul > li.mil-services-menu-item > ul#servicesMenuList > li.mil-service-menu-group:hover > a {
+        color: #C78C24 !important;
+        transform: translateX(4px) !important;
+    }
+
+    .mil-menu-frame .mil-main-menu > ul > li.mil-services-menu-item > ul#servicesMenuList > li.mil-service-menu-group > ul.mil-submenu {
+        position: absolute !important;
+        top: -4px !important;
+        left: 100% !important;
+        right: auto !important;
+        min-width: 240px !important;
+        width: max-content !important;
+        padding: 0 0 0 35px !important;
+        margin: 0 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: translateX(-10px) !important;
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease !important;
+        display: block !important;
+        z-index: 1000 !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .mil-menu-frame .mil-main-menu > ul > li.mil-services-menu-item > ul#servicesMenuList > li.mil-service-menu-group:hover > ul.mil-submenu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateX(0) !important;
+    }
+
+    .mil-menu-frame .mil-main-menu > ul > li.mil-services-menu-item > ul#servicesMenuList > li.mil-service-menu-group > ul.mil-submenu > li {
+        margin: 0 0 8px 0 !important;
+        padding: 0 !important;
+    }
+
+    .mil-menu-frame .mil-main-menu > ul > li.mil-services-menu-item > ul#servicesMenuList > li.mil-service-menu-group > ul.mil-submenu > li > a {
+        font-size: 12px !important;
+        letter-spacing: 1.5px !important;
+        color: rgba(255, 255, 255, 0.55) !important;
+        white-space: nowrap !important;
+        text-transform: uppercase !important;
+        transition: color 0.2s ease, transform 0.2s ease !important;
+        display: inline-block !important;
+    }
+
+    .mil-menu-frame .mil-main-menu > ul > li.mil-services-menu-item > ul#servicesMenuList > li.mil-service-menu-group > ul.mil-submenu > li > a:hover {
+        color: #e3a73a !important;
+        transform: translateX(4px) !important;
+    }
 }
 
 /* Hero Section */

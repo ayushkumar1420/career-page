@@ -71,60 +71,8 @@
 }
 
 .career-explore-page.is-job-view .opportunities-section {
-    position: relative;
-    isolation: isolate;
-    z-index: 3;
     min-height: 65vh;
     padding-top: 82px;
-    background: #fff;
-    color: #181818;
-}
-
-body:has(.career-explore-page.is-job-view) {
-    background: #fff;
-}
-
-body:has(.career-explore-page.is-job-view) .main-header {
-    z-index: 5;
-}
-
-.job-background-animation {
-    position: absolute;
-    top: -205px;
-    right: 2%;
-    z-index: 1;
-    display: none;
-    width: 690px;
-    height: 820px;
-    overflow: hidden;
-    opacity: 0.16;
-    pointer-events: none;
-}
-
-.career-explore-page.is-job-view .job-background-animation {
-    display: block;
-}
-
-.job-background-animation .mil-dodecahedron {
-    top: 0;
-    left: 0;
-    transform: scale(3.65);
-    transform-origin: top center;
-    animation-duration: 52s;
-}
-
-.job-background-animation .mil-pentagon div {
-    border-top: 0.2px solid #d79218;
-}
-
-.career-explore-page.is-job-view .opportunities-section > .container {
-    position: relative;
-    z-index: 2;
-}
-
-.career-explore-page.is-job-view .job-application-panel {
-    position: relative;
-    z-index: 3;
 }
 
 .opportunity-card {
@@ -163,9 +111,11 @@ body:has(.career-explore-page.is-job-view) .main-header {
     isolation: isolate;
     overflow: hidden;
     padding: clamp(24px, 5vw, 52px);
-    border: 1px solid rgba(204, 146, 38, 0.65);
+    border: 1px solid rgba(204, 146, 38, 0.42);
     border-radius: 28px;
-    background: #050505;
+    background:
+        radial-gradient(ellipse at 100% 0, rgba(204, 146, 38, 0.09), transparent 34%),
+        #050505;
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
 }
 
@@ -198,30 +148,13 @@ body:has(.career-explore-page.is-job-view) .main-header {
 
 .job-detail-meta {
     margin: 0 0 44px;
-    color: #8a5b00;
+    color: #d7b76f;
     font-size: 16px;
     line-height: 1.6;
 }
 
 .job-detail-section {
     margin-top: 36px;
-}
-
-#job-detail-content {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px 42px;
-}
-
-#job-detail-content > h1,
-#job-detail-content > .job-detail-meta,
-#job-detail-content > .job-detail-unavailable,
-#job-detail-content > .job-detail-section:last-child {
-    grid-column: 1 / -1;
-}
-
-#job-detail-content > .job-detail-section {
-    margin-top: 0;
 }
 
 .job-detail-section h2 {
@@ -251,6 +184,231 @@ body:has(.career-explore-page.is-job-view) .main-header {
 
 .job-detail-actions {
     margin-top: 46px;
+}
+
+.application-view {
+    margin-top: 52px;
+    padding-top: clamp(32px, 5vw, 48px);
+    border-top: 1px solid rgba(204, 146, 38, 0.28);
+}
+
+.application-view > .explore-section-label {
+    margin-top: 0;
+}
+
+.application-view > h2,
+.application-success h2 {
+    margin: 0 0 18px;
+    color: #f3f1ed;
+    font-size: clamp(34px, 4.5vw, 54px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.application-job-title {
+    margin: 0 0 10px;
+    color: #d7b76f;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.application-intro {
+    margin: 0 0 32px;
+    color: #929292;
+    line-height: 1.6;
+}
+
+.application-intro span,
+.application-form label span {
+    color: #d7b76f;
+}
+
+.application-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 24px;
+}
+
+.application-field {
+    min-width: 0;
+}
+
+.application-field-wide {
+    grid-column: 1 / -1;
+}
+
+.application-form label {
+    display: block;
+    margin: 0 0 9px;
+    color: #e5e5e5;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.application-form input:not([type="checkbox"]):not([type="file"]),
+.application-form select,
+.application-form textarea {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    height: auto;
+    margin: 0;
+    padding: 13px 15px;
+    border: 1px solid #343434;
+    border-radius: 12px;
+    background: #101010;
+    color: #f4f4f4;
+    font: inherit;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.application-form input:not([type="checkbox"]):not([type="file"]),
+.application-form textarea {
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.application-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.application-form input::placeholder,
+.application-form textarea::placeholder {
+    color: #737373;
+    opacity: 1;
+}
+
+.application-form input[type="file"] {
+    display: block;
+    width: 100%;
+    min-height: 54px;
+    height: auto;
+    margin: 0;
+    padding: 8px 12px;
+    border: 1px solid #343434;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background: #101010;
+    color: #bdbdbd;
+    font: inherit;
+}
+
+.application-form input[type="file"]::file-selector-button {
+    margin-right: 14px;
+    padding: 8px 14px;
+    border: 1px solid #cc9226;
+    border-radius: 10px;
+    background: transparent;
+    color: #e5c27b;
+    font: inherit;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.selected-resume {
+    display: block;
+    margin-top: 9px;
+    color: #929292;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.application-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.application-consent input {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    margin: 2px 0 0;
+    accent-color: #cc9226;
+}
+
+.application-consent label {
+    margin: 0;
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.field-error {
+    display: block;
+    min-height: 0;
+    margin-top: 6px;
+    color: #ffb6a8;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.field-error:not(:empty) {
+    min-height: 18px;
+}
+
+.email-verification-button {
+    width: fit-content;
+    margin-top: 10px;
+    padding: 9px 14px;
+    border: 1px solid rgba(204, 146, 38, 0.65);
+    border-radius: 3px;
+    background: transparent;
+    color: #e5c27b;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.email-verification-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.application-form [aria-invalid="true"] {
+    border-color: #ff8e7c !important;
+}
+
+.application-feedback {
+    margin: 24px 0 0;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 142, 124, 0.45);
+    border-radius: 4px;
+    background: rgba(130, 48, 36, 0.15);
+    color: #ffd0c7;
+    line-height: 1.6;
+}
+
+.application-submit {
+    margin-top: 28px;
+    border: 0;
+    cursor: pointer;
+}
+
+.application-submit:disabled {
+    cursor: wait;
+    filter: grayscale(0.35);
+    opacity: 0.75;
+}
+
+.application-success {
+    margin-top: 28px;
+    padding: clamp(24px, 5vw, 44px);
+    border: 1px solid rgba(204, 146, 38, 0.35);
+    background: #0c0c0c;
+}
+
+.application-success > p:not(.explore-section-label) {
+    color: #b5b5b5;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.application-success > p strong {
+    color: #eee;
 }
 
 .application-view {
@@ -491,18 +649,6 @@ body:has(.career-explore-page.is-job-view) .main-header {
     .job-application-panel {
         padding: 24px 18px;
         border-radius: 20px;
-    }
-
-    #job-detail-content {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-
-    #job-detail-content > h1,
-    #job-detail-content > .job-detail-meta,
-    #job-detail-content > .job-detail-unavailable,
-    #job-detail-content > .job-detail-section:last-child {
-        grid-column: auto;
     }
 
     .application-view {

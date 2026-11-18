@@ -14,11 +14,97 @@
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/custom.css">
-    <link rel="stylesheet" href="career.css?v=20261118-menu2">
-    <link rel="stylesheet" href="explore.css?v=20261118-menu2">
-    <link rel="stylesheet" href="apply.css?v=20261118-menu2">
+    <link rel="stylesheet" href="career.css">
+    <link rel="stylesheet" href="explore.css">
+    <link rel="stylesheet" href="apply.css">
 </head>
 <body>
+    <!-- =========================================================
+         FULLSCREEN NAVIGATION MENU
+    ========================================================= -->
+    <div class="mil-menu-frame">
+
+        <!-- TOP BAR -->
+        <div class="mil-frame-top">
+            <!-- LOGO -->
+            <a href="/index.php" class="mil-logo">
+                <img src="../img/logo.png" class="logo-d show-logo" alt="DeepshiTech">
+                <img src="../img/logo2.png" class="logo-d show-logo-mob" alt="DeepshiTech">
+            </a>
+
+            <!-- MENU CLOSE / TOGGLE -->
+            <div class="mil-menu-btn">
+                <span></span>
+            </div>
+        </div>
+
+        <!-- MENU CONTENT -->
+        <div class="mil-menu-content">
+            <div class="container">
+                <div class="mil-menu-layout">
+                    <nav class="mil-main-menu" id="swupMenu">
+                        <ul class="mil-menu-list">
+
+                            <!-- HOMEPAGE -->
+                            <li class="mil-has-children mil-active">
+                                <a href="/index.php">Homepage</a>
+                                <ul class="mil-submenu">
+                                    <li><a href="/index.php">Landing page</a></li>
+                                    <li><a href="../personal/index.html">Personal</a></li>
+                                    <li><a href="../portfolio-slider/index.html">Portfolio slider</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- PORTFOLIO -->
+                            <li class="mil-has-children">
+                                <a href="../portfolio/index.html">Portfolio</a>
+                                <ul class="mil-submenu" id="portfolioMenuList">
+                                    <li><a href="../portfolio/index.html">All projects</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- SERVICES -->
+                            <li class="mil-has-children mil-services-menu-item">
+                                <a href="../services/index.html">Services</a>
+                                <ul class="mil-submenu" id="servicesMenuList"></ul>
+                            </li>
+
+                            <!-- NEWSLETTER -->
+                            <li class="mil-has-children">
+                                <a href="../blog/index.php">Newsletter</a>
+                                <ul class="mil-submenu">
+                                    <li class="mil-has-children">
+                                        <a href="../blog/index.php">Blog</a>
+                                        <ul class="mil-submenu">
+                                            <li><a href="../blog/index.php">Blog List</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <!-- OTHER PAGES -->
+                            <li class="mil-has-children">
+                                <a href="#.">Other pages</a>
+                                <ul class="mil-submenu">
+                                    <li class="mil-has-children">
+                                        <a href="/index.php#about">Company</a>
+                                        <ul class="mil-submenu">
+                                            <li><a href="/index.php#about">About</a></li>
+                                            <li><a href="../team/index.html">Team</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="../contact/index.html">Contact</a></li>
+                                    <li><a href="career.html">Career</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <header class="main-header">
         <a href="/index.php" class="brand">
             <img src="logo.png" alt="DeepshiTech">
@@ -40,19 +126,11 @@
                     <li><button type="button" data-lang="zh"><span class="mil-lang-flag">🇨🇳</span> 中文</button></li>
                 </ul>
             </div>
-            <button class="career-menu-toggle" type="button" aria-label="Open navigation menu"
-                aria-controls="careerMainNav" aria-expanded="false">
+            <button class="career-menu-toggle mil-menu-btn" type="button" aria-label="Open navigation menu"
+                aria-expanded="false">
                 <span></span>
             </button>
         </div>
-
-        <nav class="main-links" id="careerMainNav" aria-label="Main navigation">
-            <a href="/index.php">Homepage</a>
-            <a href="../portfolio/index.html">Portfolio</a>
-            <a href="../services/index.html">Services</a>
-            <a href="../blog/index.php">Newsletter</a>
-            <a href="../contact/index.html">Other pages</a>
-        </nav>
     </header>
 
     <main id="top" class="career-explore-page">
@@ -116,22 +194,6 @@
         </section>
 
         <section class="explore-section opportunities-section" id="opportunities">
-            <div class="job-background-animation" aria-hidden="true">
-                <div class="mil-dodecahedron">
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                    <div class="mil-pentagon"><div></div><div></div><div></div><div></div><div></div></div>
-                </div>
-            </div>
             <div class="container">
                 <div id="job-listing-view">
                     <p class="explore-section-label">Find your direction</p>
@@ -496,6 +558,7 @@
         });
     </script>
     <script src="../js/i18n.js"></script>
+    <script src="../js/site-data.js"></script>
     <script src="header.js"></script>
 </body>
 </html>
